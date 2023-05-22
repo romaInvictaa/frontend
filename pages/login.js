@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import Link from "next/link";
-import Image from "next/image";
 
 const LoginForm = () => {
   const auth = useAuth();
@@ -40,12 +39,13 @@ const LoginForm = () => {
     auth.logout();
   };
 
-
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
+
+  const [error, setError] = useState(null);
 
   return (
     <div className="container">
@@ -123,10 +123,7 @@ const LoginForm = () => {
             >
               Iniciar sesión
             </button>
-
           </form>
-
-
 
           <button
             className="w-full bg-white hover:bg-gray-100 transition duration-500 text-black outline outline-gray-400 outline-1 px-4 py-3 rounded-lg text-lg mb-4"
