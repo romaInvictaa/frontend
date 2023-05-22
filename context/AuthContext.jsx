@@ -7,8 +7,16 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   onAuthStateChanged,
 } from "firebase/auth";
+
+// restablecimiento de contraseña
+const resetPassword = async (email) => {
+  await sendPasswordResetEmail(auth, email);
+};
+
 
 export const AuthContext = createContext();
 console.log("AuthContext", AuthContext);
@@ -35,15 +43,28 @@ export function AuthProvider({ children }) {
     return () => registrado();
   }, []);
 
-  // registro de usuario
+  // registro manual
   const register = async (email, password) => {
     const response = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    if (response.user) {
+      sendEmailVerification(auth.currentUser)
+        .then(() => {
+          console.log("Se ha enviado un correo electrónico de verificación");
+        })
+        .catch((error) => {
+          console.error(
+            "Error al enviar el correo electrónico de verificación:",
+            error
+          );
+        });
+    }
     console.log(response);
   };
+
   // inicio de sesion manual
   const login = async (email, password) => {
     const response = await signInWithEmailAndPassword(auth, email, password);
@@ -65,7 +86,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ register, login, loginWithGoogle, logout, user }}
+      value={{ register, login, loginWithGoogle, resetPassword, logout, user }}
     >
       {children}
     </AuthContext.Provider>

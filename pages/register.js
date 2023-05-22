@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const RegisterForm = () => {
   const { register } = useAuth();
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  const [verificationSent, setVerificationSent] = useState(false);
 
   const handleRegisterEmailChange = (e) => {
     setRegisterEmail(e.target.value);
@@ -13,10 +14,16 @@ const RegisterForm = () => {
   const handleRegisterPasswordChange = (e) => {
     setRegisterPassword(e.target.value);
   };
+
   const handleRegister = (e) => {
     e.preventDefault();
     register(registerEmail, registerPassword);
+    setVerificationSent(true);
   };
+
+  useEffect(() => {
+    setVerificationSent(false);
+  }, [registerEmail]);
 
   return (
     <div>
@@ -46,7 +53,14 @@ const RegisterForm = () => {
         </div>
         <button type="submit">Registrarse</button>
       </form>
+      {verificationSent && (
+        <p>
+          Se ha enviado un correo electrónico de verificación. Por favor,
+          verifica tu correo electrónico.
+        </p>
+      )}
     </div>
   );
 };
+
 export default RegisterForm;
