@@ -5,6 +5,7 @@ import Link from "next/link";
 const LoginForm = () => {
   const auth = useAuth();
   // console.log(auth);
+  const [error, setError] = useState(null);
   const { displayName } = auth.user;
   // console.log(displayName);
   const usuariomail = auth.user.email;
@@ -24,9 +25,17 @@ const LoginForm = () => {
     setLoginPassword(e.target.value);
   };
 
-  const handleLogin = (e) => {
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   login(loginEmail, loginPassword);
+  // };
+  const handleLogin = async (e) => {
     e.preventDefault();
-    login(loginEmail, loginPassword);
+    try {
+      await login(loginEmail, loginPassword);
+    } catch (error) {
+      setError("Usuario o contraseña inválidos");
+    }
   };
 
   const handleGoogleLogin = (e) => {
@@ -45,8 +54,6 @@ const LoginForm = () => {
     setIsPasswordVisible((prevState) => !prevState);
   }
 
-  const [error, setError] = useState(null);
-
   return (
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
@@ -54,7 +61,9 @@ const LoginForm = () => {
           <h1 className="text-4xl font-semibold mb-8">Iniciar sesión</h1>
           <form onSubmit={handleLogin} className="align-middle align-center">
             <div>
-              <label className='text-lg' htmlFor="login-email">Correo electrónico</label>
+              <label className="text-lg" htmlFor="login-email">
+                Correo electrónico
+              </label>
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 type="email"
@@ -65,7 +74,9 @@ const LoginForm = () => {
               />
             </div>
             <div className="relative">
-              <label className='text-lg' htmlFor="login-password">Contraseña</label>
+              <label className="text-lg" htmlFor="login-password">
+                Contraseña
+              </label>
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
@@ -116,7 +127,34 @@ const LoginForm = () => {
                   </svg>
                 )}
               </button>
+
+              
             </div>
+
+
+            {/* alert */}
+            {error && (
+                <div
+                  class="bg-red-100 mb-8  border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                  role="alert"
+                >
+                  <strong class="font-bold">Ups! &nbsp;</strong>
+                  <span class="block sm:inline">{error}</span>
+                  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    <svg
+                      class="fill-current h-6 w-6 text-red-500"
+                      role="button"
+                      onClick={() => setError(null)}
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <title>Close</title>
+                      <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                    </svg>
+                  </span>
+                </div>
+              )}
+
             <button
               className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
               type="submit"
@@ -131,7 +169,12 @@ const LoginForm = () => {
           >
             <div className="grid grid-cols-12">
               <div className="col-span-2 flex justify-end">
-                <img src="/googleLogo.png" className="h-7 w-7 inline text-pink-500" width={20} alt="google" />
+                <img
+                  src="/googleLogo.png"
+                  className="h-7 w-7 inline text-pink-500"
+                  width={20}
+                  alt="google"
+                />
               </div>
               <div className="col-span-8">
                 <span>Iniciar sesión con Google</span>
@@ -139,20 +182,22 @@ const LoginForm = () => {
             </div>
           </button>
 
-
           <div className="mt-2 mb-2 flex justify-center">
             <Link href="/recover">
-              <span className="text-orange-primary hover:underline">¿Olvidaste tu contraseña?</span>
+              <span className="text-orange-primary hover:underline">
+                ¿Olvidaste tu contraseña?
+              </span>
             </Link>
           </div>
 
           <div className="mt-2 mb-2 flex justify-center">
-            <span href='/recover'>¿No tienes cuenta?&nbsp;</span>
+            <span href="/recover">¿No tienes cuenta?&nbsp;</span>
             <Link href="/register">
-              <span className="text-orange-primary hover:underline">Registrate</span>
+              <span className="text-orange-primary hover:underline">
+                Registrate
+              </span>
             </Link>
           </div>
-
         </div>
         <div className="invisible lg:visible lg:col-span-6 flex justify-end">
           <img className="h-screen" src="/loginImg.png" alt="login" />

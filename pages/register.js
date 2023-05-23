@@ -53,13 +53,14 @@ const RegisterForm = () => {
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
+                minLength={6}
                 type="password"
                 id="register-password"
                 value={registerPassword}
                 onChange={handleRegisterPasswordChange}
               />
               <button
-                className="absolute inset-y-0 right-0 flex items-center px-4 text-gray-600"
+                className="absolute inset-y-0 right-0 text-gray-600"
                 onClick={togglePasswordVisibility}
               >
                 {isPasswordVisible ? (
