@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const RegisterForm = () => {
   const { register } = useAuth();
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerEmail, setRegisterEmail] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const [verificationSent, setVerificationSent] = useState(false);
 
   const handleRegisterEmailChange = (e) => {
@@ -39,7 +39,9 @@ const RegisterForm = () => {
           <h1 className="text-4xl font-semibold mb-8">Registrarse</h1>
           <form onSubmit={handleRegister} className="align-middle align-center">
             <div>
-              <label className='text-lg' htmlFor="register-email">Correo electrónico:</label>
+              <label className="text-lg" htmlFor="register-email">
+                Correo electrónico:
+              </label>
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
@@ -50,7 +52,9 @@ const RegisterForm = () => {
               />
             </div>
             <div className="relative">
-              <label className='text-lg' htmlFor="register-password">Contraseña:</label>
+              <label className="text-lg" htmlFor="register-password">
+                Contraseña:
+              </label>
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
@@ -121,16 +125,30 @@ const RegisterForm = () => {
           </div>
           </form>
           {verificationSent && (
-          <div class="bg-orange-100 border-t-4 border-orange-500 rounded-b text-orange-900 px-4 py-3 shadow-md mt-4" role="alert">
-            <div class="flex">
-              <div class="py-1"><svg class="fill-current h-6 w-6 text-orange-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" /></svg></div>
-              <div>
-                <p class="font-bold">Verificación</p>
-                <p class="text-sm">Se ha enviado un correo electrónico de verificación. Por favor, revisa tu correo.</p>
+            <div
+              class="bg-orange-100 border-t-4 border-orange-500 rounded-b text-orange-900 px-4 py-3 shadow-md mt-4"
+              role="alert"
+            >
+              <div class="flex">
+                <div class="py-1">
+                  <svg
+                    class="fill-current h-6 w-6 text-orange-500 mr-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold">Verificación</p>
+                  <p class="text-sm">
+                    Se ha enviado un correo electrónico de verificación. Por
+                    favor, revisa tu correo.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          )} 
+          )}
         </div>
         <div className="invisible lg:visible lg:col-span-6 flex justify-end">
           <img className="h-screen" src="/loginImg.png" alt="login" />

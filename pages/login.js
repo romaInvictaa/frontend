@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useAuth } from "../context/AuthContext.jsx";
-import Link from "next/link";
+import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext.jsx';
+import Link from 'next/link';
 
 const LoginForm = () => {
   const auth = useAuth();
@@ -11,8 +11,8 @@ const LoginForm = () => {
   const usuariomail = auth.user.email;
   // console.log(usuariomail);
   const { login, loginWithGoogle } = useAuth();
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
 
   // const [registerEmail, setRegisterEmail] = useState("");
   // const [registerPassword, setRegisterPassword] = useState("");
@@ -34,7 +34,7 @@ const LoginForm = () => {
     try {
       await login(loginEmail, loginPassword);
     } catch (error) {
-      setError("Usuario o contraseña inválidos");
+      setError('Usuario o contraseña inválidos');
     }
   };
 
@@ -81,7 +81,7 @@ const LoginForm = () => {
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
                 id="login-password"
                 value={loginPassword}
                 onChange={handleLoginPasswordChange}
@@ -128,40 +128,35 @@ const LoginForm = () => {
                   </svg>
                 )}
               </button>
-
-              
             </div>
-
 
             {/* alert */}
             {error && (
-                <div
-                  class="bg-red-100 mb-8  border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                  role="alert"
-                >
-                  <strong class="font-bold">Ups! &nbsp;</strong>
-                  <span class="block sm:inline">{error}</span>
-                  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                    <svg
-                      class="fill-current h-6 w-6 text-red-500"
-                      role="button"
-                      onClick={() => setError(null)}
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <title>Close</title>
-                      <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
-                    </svg>
-                  </span>
-                </div>
-              )}
-
-            <button
-              className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
-              type="submit"
-            >
-              Iniciar sesión
-            </button>
+              <div
+                class="bg-red-100 mb-8  border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                role="alert"
+              >
+                <strong class="font-bold">Ups! &nbsp;</strong>
+                <span class="block sm:inline">{error}</span>
+                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                  <svg
+                    class="fill-current h-6 w-6 text-red-500"
+                    role="button"
+                    onClick={() => setError(null)}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <title>Close</title>
+                    <path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                  </svg>
+                </span>
+              </div>
+            )}
+            <Link href="/coliseum">
+              <button className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg">
+                Iniciar sesión
+              </button>
+            </Link>
           </form>
 
           <button
