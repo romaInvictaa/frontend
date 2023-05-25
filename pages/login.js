@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import Link from "next/link";
 
+const REGISTER_URL = "http://localhost:4000/users/";
+
 const LoginForm = () => {
   const auth = useAuth();
   // console.log(auth);
@@ -41,6 +43,7 @@ const LoginForm = () => {
   const handleGoogleLogin = (e) => {
     e.preventDefault();
     loginWithGoogle();
+    registerUser();
   };
 
   const handleLogout = (e) => {
@@ -53,6 +56,28 @@ const LoginForm = () => {
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
+
+  // obtener el usuario que inicio sesion con google y enviar su nombre a la base de datos
+  const registerUser = async () => {
+    console.log("Datos enviados a la base de datos:", {
+      user_name: displayName,
+      user_email: usuariomail,
+    });
+    const response = await fetch(REGISTER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_name: displayName,
+        user_email: usuariomail,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+
 
   return (
     <div className="container">
