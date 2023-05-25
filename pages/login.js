@@ -58,7 +58,8 @@ const LoginForm = () => {
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
         <div className="col-span-12 lg:col-span-6 py-24 px-10 lg:px-20 lg:py-10 xl:px-28">
-          <h1 className="text-4xl font-semibold mb-8">Iniciar sesión</h1>
+        <h1 className="text-4xl font-semibold mb-8">Roma Invicta</h1>
+          <h2 className="text-2xl font-semibold mb-8">Iniciar sesión</h2>
           <form onSubmit={handleLogin} className="align-middle align-center">
             <div>
               <label className="text-lg" htmlFor="login-email">

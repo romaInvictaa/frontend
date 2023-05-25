@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
+import Link from "next/link";
 
 const RegisterForm = () => {
   const { register } = useAuth();
@@ -100,13 +101,24 @@ const RegisterForm = () => {
                   </svg>
                 )}
               </button>
+              
             </div>
+           
+
             <button
               className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
               type="submit"
             >
               Registrarse
             </button>
+            <div className="mt-2 mb-2 flex justify-center">
+            <span href="/recover">¿Ya tienes cuenta?&nbsp;</span>
+            <Link href="/login">
+              <span className="text-orange-primary hover:underline">
+                Login
+              </span>
+            </Link>
+          </div>
           </form>
           {verificationSent && (
           <div class="bg-orange-100 border-t-4 border-orange-500 rounded-b text-orange-900 px-4 py-3 shadow-md mt-4" role="alert">

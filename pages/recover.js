@@ -37,6 +37,7 @@ const PasswordResetForm = () => {
                 required
               />
             </div>
+          
             <button
               className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
               type="submit"
