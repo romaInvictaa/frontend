@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 
+
+//const { REGISTER_URL } = process.env;
+const REGISTER_URL = "/api/users/";
+
 const RegisterForm = () => {
   const { register } = useAuth();
   const [registerEmail, setRegisterEmail] = useState('');
