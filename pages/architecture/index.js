@@ -15,8 +15,8 @@ const History = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-2 w-full'>
-                    {pages.map((page) => (
-                        <div className='col-span-2 md:col-span-1 sm:px-6'>
+                    {pages.map((page, index) => (
+                        <div className='col-span-2 md:col-span-1 sm:px-6' key={index}>
 
                             <PageCard page={page} />
 
