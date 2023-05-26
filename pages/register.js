@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext.jsx';
 
 
 //const { REGISTER_URL } = process.env;
-const REGISTER_URL = "http://localhost:4000/users/";
+const REGISTER_URL = "/api/users/";
 
 const RegisterForm = () => {
   console.log(REGISTER_URL);

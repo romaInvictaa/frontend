@@ -14,15 +14,15 @@ export function Model(props) {
         receiveShadow
         geometry={nodes.coliseo.geometry}
         material={materials.Material}
-        position={[-50.0, 100, 50]}
-        scale={4}
+        position={[0, 0, 0]}
+        scale={1}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Floor.geometry}
         material={materials.wall}
-        position={[0, -100, 0]}
+        position={[0, -50, 0]}
         scale={250}
       />
     </group>

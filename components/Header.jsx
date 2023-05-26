@@ -1,13 +1,30 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const Header = ({ user }) => {
+const Header = ({ user, slug }) => {
 
     const [showMenu, setShowMenu] = useState(false);
 
     return (
         <div className={showMenu ? "container mx-auto bg-dark-slate-blue" : "container mx-auto"}>
             <div className="md:border-b w-full inline-block border-dark-slate-blue py-2 px-12 xl:px-16">
+
+                {/* Back button */}
+                {console.log(slug)}
+                {slug ? (
+                    <div className="hidden block md:contents">
+                        <Link href={`${slug}`}>
+                        <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-4 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
+                                Volver
+                            </span>
+                        </Link>
+                    </div>
+                ) : (
+                    <div></div>
+                )
+                }
+
+
                 <div className="float-right align-middle translate-y-3 md:hidden" onClick={() => setShowMenu(!showMenu)}>
 
                     {showMenu ? (
@@ -24,9 +41,6 @@ const Header = ({ user }) => {
                         </svg>
                     )
                     }
-
-
-
 
                 </div>
                 {user ? (

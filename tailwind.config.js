@@ -19,8 +19,22 @@ module.exports = {
         'cream-secondary': '#FFE8C2',
         'dark-slate-blue': '#181E4B',
         'light-gray': '#E5E5E5',
-      }
+      },
+      animation: {
+        shine: "shine 1s",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+        "shimmer": {
+          "100%": {
+            "transform": "translateX(100%)",
+          },
+        },
+      },
     },
   },
+
   plugins: [],
 }
