@@ -2,7 +2,7 @@ import { OrbitControls , Text, Float} from '@react-three/drei'
 import { useTexture } from "@react-three/drei";
 import { DoubleSide } from "three";
 import Video from './Video'
-import {  Model } from './Model'
+import {  Coliseo } from './Coliseo'
 import {  Land } from './Land'
 
 const PATH = "/textures/coral/"
@@ -11,15 +11,15 @@ export default function Experience() {
     
     return <>
         <OrbitControls makeDefault />
-        <spotLight  castShadow position={[-15, 15, 0]} intensity={1.5} />
+        <spotLight  castShadow position={[10, 15, 30]} intensity={1.5} />
         <ambientLight intensity={0.5} />
-    
-        {/* <Video /> */}
         <mesh position={[-1.5, 4, 1]} >
-            <Model scale={0.1} castShadow/>
-        </mesh>
+         <Video /> 
+        
+        <Coliseo scale={0.2} castShadow position={[0,12,-15]}/>
+       
 
-        {/* <Land scale={1}/>
+        <Land scale={1}/>
         <Float speed={6}>
         <Text
             fontSize={2}
@@ -32,7 +32,8 @@ export default function Experience() {
         >
             COLISEO ROMANO
         </Text>
-        </Float> */}
+        </Float> 
+        </mesh>
     
     
     </>

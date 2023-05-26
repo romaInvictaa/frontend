@@ -4,11 +4,11 @@ import { Header, InfoCard, ImageCarousel } from '@/components';
 
 const Coliseum = () => {
   const cameraSettings = {
-    fov: 80,
+    fov: 90,
     aspect: 2,
     near: 0.1,
     far: 400,
-    position: [-10, 3, 3],
+    position: [0, 14, 22],
   };
 
   return (
