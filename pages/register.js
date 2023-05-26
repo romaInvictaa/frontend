@@ -6,9 +6,14 @@ import { useAuth } from '../context/AuthContext.jsx';
 const REGISTER_URL = "/api/users/";
 
 const RegisterForm = () => {
+  console.log(REGISTER_URL);
   const { register } = useAuth();
-  const [registerEmail, setRegisterEmail] = useState('');
-  const [registerPassword, setRegisterPassword] = useState('');
+  const [user_name, setUser_name] = useState("");
+  const [user_lastname, setUser_lastname] = useState("");
+  const [user_phone, setUser_phone] = useState("");
+  const [user_city, setUser_city] = useState("");
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
   const [verificationSent, setVerificationSent] = useState(false);
 
   const handleRegisterEmailChange = (e) => {
@@ -23,6 +28,7 @@ const RegisterForm = () => {
     e.preventDefault();
     register(registerEmail, registerPassword);
     setVerificationSent(true);
+    registerUser();
   };
 
   useEffect(() => {
@@ -35,12 +41,87 @@ const RegisterForm = () => {
     setIsPasswordVisible((prevState) => !prevState);
   }
 
+  // registro de usuario en la base de datos con la url REGISTER_URL a excepcion del password que se registran en firebase
+  const registerUser = async () => {
+    console.log("Datos enviados a la base de datos:", {
+      user_name: user_name,
+      user_lastname: user_lastname,
+      user_phone: user_phone,
+      user_city: user_city,
+      user_email: registerEmail,
+    });
+    const response = await fetch(REGISTER_URL, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_name: user_name,
+        user_lastname: user_lastname,
+        user_phone: user_phone,
+        user_city: user_city,
+        user_email: registerEmail,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
         <div className="col-span-12 lg:col-span-6 py-24 px-10 lg:px-20 lg:py-10 xl:px-28">
           <h1 className="text-4xl font-semibold mb-8">Registrarse</h1>
           <form onSubmit={handleRegister} className="align-middle align-center">
+            {/* NOMBRE */}
+            <div>
+              <label className="text-lg">Nombre:</label>
+              <input
+                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
+                required
+                type="text"
+                id="user_name"
+                value={user_name}
+                onChange={(e) => setUser_name(e.target.value)}
+              />
+            </div>
+            {/* APELLIDO */}
+            <div>
+              <label className="text-lg">Apellido:</label>
+              <input
+                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
+                required
+                type="text"
+                id="user_lastname"
+                value={user_lastname}
+                onChange={(e) => setUser_lastname(e.target.value)} // Corregir el evento onChange
+              />
+            </div>
+            {/* Numero de Telefono */}
+            <div>
+              <label className="text-lg">Numero de Telefono:</label>
+              <input
+                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
+                required
+                type="number"
+                id="user_phone"
+                value={user_phone}
+                onChange={(e) => setUser_phone(e.target.value)} // Corregir el evento onChange
+              />
+            </div>
+            {/* CIUDAD */}
+            <div>
+              <label className="text-lg">Ciudad:</label>
+              <input
+                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
+                required
+                type="text"
+                id="user_city"
+                value={user_city}
+                onChange={(e) => setUser_city(e.target.value)} // Corregir el evento onChange
+              />
+            </div>
+            {/* EMAIL */}
             <div>
               <label className="text-lg" htmlFor="register-email">
                 Correo electrónico:
