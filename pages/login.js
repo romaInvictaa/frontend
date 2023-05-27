@@ -15,6 +15,13 @@ const LoginForm = () => {
   const [ displayName, setDisplayName ] = useState(auth.user.displayName);
   const [ email, setEmail ] = useState(auth.user.email);
 
+  useEffect(() => {
+    if (auth.user) {
+      setDisplayName(auth.user.displayName);
+      setEmail(auth.user.email);
+    }
+  }, [auth.user]);
+
   const { login, loginWithGoogle } = useAuth();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
@@ -48,19 +55,17 @@ const LoginForm = () => {
 
   const handleGoogleLogin = async (e) => {
     e.preventDefault();
-    try{
+    try {
       await loginWithGoogle();
-    }
-    catch (error) {
-      setError('Usuario o contraseña inválidos');
-    } finally {
       setDisplayName(auth.user.displayName);
       setEmail(auth.user.email);
+      await registerUser(); // Espera a que la función registerUser se complete antes de continuar
+      router.push('/');
+    } catch (error) {
+      setError('Usuario o contraseña inválidos');
     }
-
-    registerUser();
-    router.push('/');
   };
+  
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -74,27 +79,31 @@ const LoginForm = () => {
   }
 
   // obtener el usuario que inicio sesion con google y enviar su nombre a la base de datos
-  const registerUser = async () => {
-    // console.log("Datos enviados a la base de datos:", {
-    //   user_name: displayName,
-    //   user_email: usuariomail,
-    // });
-    const response = await fetch(REGISTER_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_name: displayName,
-        user_email: email,
-        user_phone: null,
-        user_city: null
-      }),
+  const registerUser = () => {
+    return new Promise(async (resolve, reject) => {
+      console.log("displayName", displayName);
+      console.log("email", email);
+      try {
+        const response = await fetch(REGISTER_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_name: displayName,
+            user_email: email,
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
+        resolve(data); // Resuelve la promesa con los datos de respuesta
+      } catch (error) {
+        reject(error); // Rechaza la promesa con el error
+      }
     });
-    const data = await response.json();
-    //console.log(data);
   };
 
+  
   return (
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
