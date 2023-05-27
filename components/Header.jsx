@@ -1,18 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth } from '../context/AuthContext.jsx';
 import { AccountCard } from "./";
+
+const REGISTER_URL = "/api/usermail";
 
 const Header = ({ slug }) => {
 
     const auth = useAuth();
     const user = auth.user;
 
-    console.log(auth.user)
-    // console.log(auth.user.email)
+
+    //console.log(auth.user)
+    //console.log(auth.user.email)
+    const [displayName, setDisplayName] = useState("");
+    const [email, setEmail] = useState("");
+
+    // useEffect(() => {
+    //     setEmail(auth.user.email);
+    // }, [auth.user.email]);
 
     const [showMenu, setShowMenu] = useState(false);
     const [profileMenu, setProfileMenu] = useState(false);
+
+    const getName = async () => {
+        const response = await fetch(REGISTER_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_email: auth.user.email,
+            }),
+        });
+        const data = await response.json();
+        //console.log("data", data);
+
+        if (data.length === 0) {
+            return;
+        }
+        setDisplayName(data[0].user_name);
+    }
+
+    useEffect(() => {
+        //console.log("xd", auth.user.displayName);
+        if (auth.user.displayName === null) {
+            //console.log("true")
+            getName();
+        } else {
+            setDisplayName(auth.user.displayName);
+        }
+
+    }, [auth.user.displayName]);
+
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -61,15 +101,19 @@ const Header = ({ slug }) => {
                     <div className="hidden md:float-left md:contents mt-8">
                         <img
                             src={user.photoURL ? user.photoURL : "/profileIcon.png"}
-                            alt="logo"
+                            // alt="logo"
                             className="md:float-right align-middle text-black ml-6 font-semibold cursor-pointer rounded-full mt-2"
                             width={40}
                             onClick={() => setProfileMenu(!profileMenu)}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = "/profileIcon.png";
+                            }}
                         />
 
                         {profileMenu ? (
                             <div className="md:float-right mt-2">
-                                <AccountCard auth={auth}/>
+                                <AccountCard auth={auth} />
                             </div>
                         ) : (
                             <div></div>
@@ -77,7 +121,7 @@ const Header = ({ slug }) => {
                         }
 
                         <span className="md:float-right py-2 align-middle text-black ml-6 font-semibold cursor-pointer mt-2">
-                            {user.displayName}
+                            {user.displayName ? user.displayName : displayName}
                         </span>
 
                     </div>

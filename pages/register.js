@@ -59,7 +59,6 @@ const RegisterForm = () => {
     //   user_city: user_city,
     //   user_email: registerEmail,
     // });
-    try {
       const response = await fetch(REGISTER_URL, {
         method: "POST",
         headers: {
@@ -75,10 +74,6 @@ const RegisterForm = () => {
       });
       const data = await response.json();
       console.log(data);
-    } catch (error) {
-
-      console.log(error);
-    }
   };
 
   return (

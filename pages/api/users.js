@@ -45,8 +45,8 @@ export default async function getUsers(req, res) {
   
 
 // obtener usuarios por correo
-export async function getUserByEmail(req, res) {
-    const { user_email } = req.body;
-    const response = await pool.query('SELECT * FROM users WHERE user_email = $1', [user_email]);
-    res.json(response.rows);
-}
+// export async function getUserByEmail(req, res) {
+//     const { user_email } = req.body;
+//     const response = await pool.query('SELECT * FROM users WHERE user_email = $1', [user_email]);
+//     res.json(response.rows);
+// }
