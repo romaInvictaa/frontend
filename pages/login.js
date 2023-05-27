@@ -117,6 +117,7 @@ const LoginForm = () => {
                 required
                 value={loginEmail}
                 onChange={handleLoginEmailChange}
+                data-testid="email"
               />
             </div>
             <div className="relative">
@@ -130,6 +131,7 @@ const LoginForm = () => {
                 id="login-password"
                 value={loginPassword}
                 onChange={handleLoginPasswordChange}
+                data-testid="password"
               />
 
               <button
@@ -197,7 +199,7 @@ const LoginForm = () => {
                 </span>
               </div>
             )}
-              <button className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg">
+              <button className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"  data-testid="login">
                 Iniciar sesión
               </button>
           </form>
@@ -205,6 +207,7 @@ const LoginForm = () => {
           <button
             className="w-full bg-white hover:bg-gray-100 transition duration-500 text-black outline outline-gray-400 outline-1 px-4 py-3 rounded-lg text-lg mb-4"
             onClick={handleGoogleLogin}
+            data-testid="googlelogin"
           >
             <div className="grid grid-cols-12">
               <div className="col-span-2 flex justify-end">

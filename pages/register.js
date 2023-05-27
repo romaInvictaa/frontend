@@ -92,6 +92,7 @@ const RegisterForm = () => {
                 id="user_name"
                 value={user_name}
                 onChange={(e) => setUser_name(e.target.value)}
+                data-testid="user_name"	
               />
             </div>
             {/* APELLIDO */}
@@ -116,6 +117,7 @@ const RegisterForm = () => {
                 id="user_phone"
                 value={user_phone}
                 onChange={(e) => setUser_phone(e.target.value)} // Corregir el evento onChange
+                data-testid="user_phone"	
               />
             </div>
             {/* CIUDAD */}
@@ -128,6 +130,7 @@ const RegisterForm = () => {
                 id="user_city"
                 value={user_city}
                 onChange={(e) => setUser_city(e.target.value)} // Corregir el evento onChange
+                data-testid="user_city"
               />
             </div>
             {/* EMAIL */}
@@ -142,6 +145,7 @@ const RegisterForm = () => {
                 id="register-email"
                 value={registerEmail}
                 onChange={handleRegisterEmailChange}
+                data-testid="user_email"	
               />
               <div className="flex items-center mt-2 mb-8">
               {emailExists && (
@@ -163,6 +167,7 @@ const RegisterForm = () => {
                 id="register-password"
                 value={registerPassword}
                 onChange={handleRegisterPasswordChange}
+                data-testid="user_password"
               />
               <button
                 type="button"
@@ -213,6 +218,7 @@ const RegisterForm = () => {
             <button
               className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
               type="submit"
+              data-testid="register-submit"
             >
               Registrarse
             </button>
