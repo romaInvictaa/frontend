@@ -2,9 +2,9 @@ name: Actions
 
 on:
   push:
-    branches: actions-testing
+    branches: main
   pull_request:
-    branches: actions-testing
+    branches: main
 
 jobs:
   test:
