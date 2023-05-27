@@ -21,7 +21,7 @@ const History = () => {
                         </div>
                     </div>
                     <div className='col-span-12 md:col-span-5 lg:col-span-4 py-8 sm:px-8 md:px-6 xl:px-10 xl:py-16'>
-                        XD
+                        CATEGORIAS
                     </div>
                 </div>
             </div>
