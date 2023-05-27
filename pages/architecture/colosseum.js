@@ -29,7 +29,7 @@ const Coliseum = () => {
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
             <InfoCard text={text}/>
-            <ImageCarousel />
+            <ImageCarousel images={images}/>
           </div>
       </div>
       </div>
@@ -40,3 +40,4 @@ const Coliseum = () => {
 export default Coliseum;
 
 const text = "El Coliseo es testigo de batallas épicas donde la gloria y el honor se disputaban bajo el rugido de los leones, las espadas chocaban y los corazones latían al unísono. ¡Ven y descubre los secretos de este coloso de la historia!"
+const images = ["/colosseum/colosseum1.png", "/colosseum/colosseum2.png", "/colosseum/colosseum3.png", "/colosseum/colosseum4.png"];

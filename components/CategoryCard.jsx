@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const CategoryCard = ({ category }) => {
     return (
-        <Link href={`/${category.slug}`}>
+        <Link href={`/${category.slug}`} data-testid={category.name}>
             <div className='shadow-xl rounded-lg px-8 py-6 mb-6 bg-cream-primary transition duration-500 hover:bg-cream-secondary hover:-translate-y-2 cursor-pointer'>
                 <div className='grid grid-cols-3 gap-2'>
                     <div className='col-span-1'>
