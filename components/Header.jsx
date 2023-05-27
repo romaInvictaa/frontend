@@ -3,9 +3,6 @@ import Link from "next/link";
 import { useAuth } from '../context/AuthContext.jsx';
 import { AccountCard } from "./";
 
-<<<<<<< Updated upstream
-const Header = ({ user, slug }) => {
-=======
 const Header = ({ slug }) => {
 
     const auth = useAuth();
@@ -13,7 +10,6 @@ const Header = ({ slug }) => {
 
     console.log(auth.user)
     // console.log(auth.user.email)
->>>>>>> Stashed changes
 
     const [showMenu, setShowMenu] = useState(false);
     const [profileMenu, setProfileMenu] = useState(false);
@@ -23,19 +19,11 @@ const Header = ({ slug }) => {
             <div className="md:border-b w-full inline-block border-dark-slate-blue py-2 px-12 xl:px-16">
 
                 {/* Back button */}
-<<<<<<< Updated upstream
-                {console.log(slug)}
-                {slug ? (
-                    <div className="hidden block md:contents">
-                        <Link href={`${slug}`}>
-                        <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-4 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
-=======
                 {/* {console.log(slug)} */}
                 {slug ? (
                     <div className="hidden block md:contents">
                         <Link href={`${slug}`}>
                             <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-4 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
->>>>>>> Stashed changes
                                 Volver
                             </span>
                         </Link>
