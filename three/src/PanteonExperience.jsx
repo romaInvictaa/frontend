@@ -13,9 +13,9 @@ export default function PanteonExperience() {
         <OrbitControls makeDefault />
         <spotLight  castShadow position={[10, 15, 30]} intensity={1.5} />
         <ambientLight intensity={0.5} />
+
         <mesh position={[-1.5, 2, 1]} >
-         <Video /> 
-        
+        {/* <Video />  */}
         
         <Panteon position={[0,1,0]}/>
         <Arena />

@@ -20,5 +20,4 @@ export function Coliseo(props) {
   );
 }
 
-
-useGLTF.preload("/models/coliseo2.glb");
+useGLTF.preload('/models/coliseo.glb');

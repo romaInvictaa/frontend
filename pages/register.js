@@ -7,7 +7,7 @@ import Link from "next/link";
 const REGISTER_URL = "/api/users/";
 
 const RegisterForm = () => {
-  console.log(REGISTER_URL);
+  //console.log(REGISTER_URL);
   const { register } = useAuth();
   const [user_name, setUser_name] = useState("");
   const [user_lastname, setUser_lastname] = useState("");
@@ -16,6 +16,7 @@ const RegisterForm = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [verificationSent, setVerificationSent] = useState(false);
+  const [emailExists, setEmailExists] = useState(false);
 
   const handleRegisterEmailChange = (e) => {
     setRegisterEmail(e.target.value);
@@ -25,11 +26,18 @@ const RegisterForm = () => {
     setRegisterPassword(e.target.value);
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    register(registerEmail, registerPassword);
-    setVerificationSent(true);
-    registerUser();
+    try {
+    await register(registerEmail, registerPassword);
+      setVerificationSent(true);
+      setEmailExists(false);
+      registerUser();
+    } catch (error) {
+      setEmailExists(true);
+      console.log(error);
+    }
+
   };
 
   useEffect(() => {
@@ -44,28 +52,28 @@ const RegisterForm = () => {
 
   // registro de usuario en la base de datos con la url REGISTER_URL a excepcion del password que se registran en firebase
   const registerUser = async () => {
-    console.log("Datos enviados a la base de datos:", {
-      user_name: user_name,
-      user_lastname: user_lastname,
-      user_phone: user_phone,
-      user_city: user_city,
-      user_email: registerEmail,
-    });
-    const response = await fetch(REGISTER_URL, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_name: user_name,
-        user_lastname: user_lastname,
-        user_phone: user_phone,
-        user_city: user_city,
-        user_email: registerEmail,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
+    // console.log("Datos enviados a la base de datos:", {
+    //   user_name: user_name,
+    //   user_lastname: user_lastname,
+    //   user_phone: user_phone,
+    //   user_city: user_city,
+    //   user_email: registerEmail,
+    // });
+      const response = await fetch(REGISTER_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_name: user_name,
+          user_lastname: "",
+          user_phone: user_phone,
+          user_city: user_city,
+          user_email: registerEmail,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
   };
 
   return (
@@ -84,10 +92,11 @@ const RegisterForm = () => {
                 id="user_name"
                 value={user_name}
                 onChange={(e) => setUser_name(e.target.value)}
+                data-testid="user_name"	
               />
             </div>
             {/* APELLIDO */}
-            <div>
+            {/* <div>
               <label className="text-lg">Apellido:</label>
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
@@ -97,7 +106,7 @@ const RegisterForm = () => {
                 value={user_lastname}
                 onChange={(e) => setUser_lastname(e.target.value)} // Corregir el evento onChange
               />
-            </div>
+            </div> */}
             {/* Numero de Telefono */}
             <div>
               <label className="text-lg">Numero de Telefono:</label>
@@ -108,6 +117,7 @@ const RegisterForm = () => {
                 id="user_phone"
                 value={user_phone}
                 onChange={(e) => setUser_phone(e.target.value)} // Corregir el evento onChange
+                data-testid="user_phone"	
               />
             </div>
             {/* CIUDAD */}
@@ -120,6 +130,7 @@ const RegisterForm = () => {
                 id="user_city"
                 value={user_city}
                 onChange={(e) => setUser_city(e.target.value)} // Corregir el evento onChange
+                data-testid="user_city"
               />
             </div>
             {/* EMAIL */}
@@ -128,13 +139,21 @@ const RegisterForm = () => {
                 Correo electrónico:
               </label>
               <input
-                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
+                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700"
                 required
                 type="email"
                 id="register-email"
                 value={registerEmail}
                 onChange={handleRegisterEmailChange}
+                data-testid="user_email"	
               />
+              <div className="flex items-center mt-2 mb-8">
+              {emailExists && (
+                <p className="text-red-500">
+                  El correo electrónico ya está registrado
+                </p>
+              )}
+              </div>
             </div>
             <div className="relative">
               <label className="text-lg" htmlFor="register-password">
@@ -148,9 +167,11 @@ const RegisterForm = () => {
                 id="register-password"
                 value={registerPassword}
                 onChange={handleRegisterPasswordChange}
+                data-testid="user_password"
               />
               <button
-                className="absolute inset-y-0 right-0 text-gray-600"
+                type="button"
+                className="absolute inset-y-0 right-3 text-gray-600"
                 onClick={togglePasswordVisibility}
               >
                 {isPasswordVisible ? (
@@ -197,6 +218,7 @@ const RegisterForm = () => {
             <button
               className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
               type="submit"
+              data-testid="register-submit"
             >
               Registrarse
             </button>
@@ -225,8 +247,8 @@ const RegisterForm = () => {
                   </svg>
                 </div>
                 <div>
-                  <p class="font-bold">Verificación</p>
-                  <p class="text-sm">
+                  <p className="font-bold">Verificación</p>
+                  <p className="text-sm">
                     Se ha enviado un correo electrónico de verificación. Por
                     favor, revisa tu correo.
                   </p>
