@@ -11,15 +11,15 @@ export default function Experience() {
     
     return <>
         <OrbitControls makeDefault />
-        <spotLight  castShadow position={[10, 15, 30]} intensity={1.5} />
+        <spotLight  castShadow position={[-15, 15, 0]} intensity={1.5} />
         <ambientLight intensity={0.5} />
+    
+        {/* <Video /> */}
         <mesh position={[-1.5, 4, 1]} >
-         <Video /> 
-        
-        <Coliseo scale={0.2} castShadow position={[0,12,-15]}/>
-       
+            <Coliseo scale={0.1} castShadow/>
+        </mesh>
 
-        <Land scale={1}/>
+        {/* <Land scale={1}/>
         <Float speed={6}>
         <Text
             fontSize={2}
@@ -32,8 +32,7 @@ export default function Experience() {
         >
             COLISEO ROMANO
         </Text>
-        </Float> 
-        </mesh>
+        </Float> */}
     
     
     </>
