@@ -18,7 +18,7 @@ describe("next-router-mock", () => {
   });
 
 describe("next-router-mock", () => {
-    it("Envío del formulario", () => {
+    it("Envío del formulario", async () => {
         render(<AuthProvider><LoginForm /></AuthProvider>);
         // check if all components are rendered
         expect(screen.getByTestId("email")).toBeInTheDocument();
@@ -34,14 +34,14 @@ describe("next-router-mock", () => {
             target: { value: "123456" },
         });
 
-        fireEvent.click(screen.getByTestId("login"));
+        await fireEvent.click(screen.getByTestId("login"));
 
         expect(mockRouter.asPath).toEqual("");
     });
 });
 
 describe("next-router-mock", () => {
-    it("Envío del formulario", () => {
+    it("Envío del formulario", async () => {
         render(<AuthProvider><LoginForm /></AuthProvider>);
         // check if all components are rendered
         expect(screen.getByTestId("email")).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe("next-router-mock", () => {
             target: { value: "" },
         });
 
-        fireEvent.click(screen.getByTestId("login"));
+        await fireEvent.click(screen.getByTestId("login"));
 
         expect(mockRouter).toMatchObject({ 
             asPath: "",
