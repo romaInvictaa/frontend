@@ -67,11 +67,6 @@ const LoginForm = () => {
   };
   
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    auth.logout();
-  };
-
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function togglePasswordVisibility() {

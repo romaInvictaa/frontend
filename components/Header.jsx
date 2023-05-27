@@ -14,6 +14,11 @@ const Header = ({ slug }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [profileMenu, setProfileMenu] = useState(false);
 
+    const handleLogout = (e) => {
+        e.preventDefault();
+        auth.logout();
+    };
+
     return (
         <div className={showMenu ? "container mx-auto bg-dark-slate-blue" : "container mx-auto"}>
             <div className="md:border-b w-full inline-block border-dark-slate-blue py-2 px-12 xl:px-16">
@@ -64,7 +69,7 @@ const Header = ({ slug }) => {
 
                         {profileMenu ? (
                             <div className="md:float-right mt-2">
-                                <AccountCard />
+                                <AccountCard auth={auth}/>
                             </div>
                         ) : (
                             <div></div>
