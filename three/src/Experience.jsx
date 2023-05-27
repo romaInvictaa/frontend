@@ -4,23 +4,25 @@ import { DoubleSide } from "three";
 import Video from './Video'
 import {  Coliseo } from './Coliseo'
 import {  Land } from './Land'
+import { FloorColiseo } from './FloorColiseo'
 
-const PATH = "/textures/coral/"
+
 
 export default function Experience() {
     
     return <>
         <OrbitControls makeDefault />
-        <spotLight  castShadow position={[10, 15, 30]} intensity={1.5} />
-        <ambientLight intensity={0.5} />
+        <spotLight  castShadow position={[10, 25, 30]} intensity={1.5} />
+        <ambientLight intensity={0.05} />
         <mesh position={[-1.5, 4, 1]} >
          <Video /> 
         
-        <Coliseo scale={0.2} castShadow position={[0,12,-15]}/>
+        <FloorColiseo />
+        <Coliseo position={[0, 2, 1]} scale={0.002} rotation={[-Math.PI / 2, 0, 0]}/>
        
 
-        <Land scale={1}/>
-        <Float speed={6}>
+        
+        {/*<Float speed={6}>
         <Text
             fontSize={2}
             fontFamily="Trebuchet MS"
@@ -32,7 +34,7 @@ export default function Experience() {
         >
             COLISEO ROMANO
         </Text>
-        </Float> 
+</Float> */}
         </mesh>
     
     
