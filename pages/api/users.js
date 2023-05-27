@@ -26,7 +26,11 @@ export default async function getUsers(req, res) {
         const response = await pool.query('SELECT * FROM users');
         res.status(200).json(response.rows);
     } else if (req.method === 'PUT') {
+<<<<<<< Updated upstream
         res.status(200).json({ name: 'XD' });
+=======
+        res.status(200).json({ name: 'Method not defined' });
+>>>>>>> Stashed changes
     }
     //res.status(200).json({ name: 'John Doe' })
 }

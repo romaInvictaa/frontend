@@ -7,7 +7,7 @@ import Link from "next/link";
 const REGISTER_URL = "/api/users/";
 
 const RegisterForm = () => {
-  console.log(REGISTER_URL);
+  //console.log(REGISTER_URL);
   const { register } = useAuth();
   const [user_name, setUser_name] = useState("");
   const [user_lastname, setUser_lastname] = useState("");
@@ -29,7 +29,7 @@ const RegisterForm = () => {
     e.preventDefault();
     register(registerEmail, registerPassword);
     setVerificationSent(true);
-    registerUser();
+    //registerUser();
   };
 
   useEffect(() => {
@@ -44,13 +44,13 @@ const RegisterForm = () => {
 
   // registro de usuario en la base de datos con la url REGISTER_URL a excepcion del password que se registran en firebase
   const registerUser = async () => {
-    console.log("Datos enviados a la base de datos:", {
-      user_name: user_name,
-      user_lastname: user_lastname,
-      user_phone: user_phone,
-      user_city: user_city,
-      user_email: registerEmail,
-    });
+    // console.log("Datos enviados a la base de datos:", {
+    //   user_name: user_name,
+    //   user_lastname: user_lastname,
+    //   user_phone: user_phone,
+    //   user_city: user_city,
+    //   user_email: registerEmail,
+    // });
     const response = await fetch(REGISTER_URL, {
       method: 'POST',
       headers: {
@@ -65,7 +65,7 @@ const RegisterForm = () => {
       }),
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
   };
 
   return (
@@ -225,8 +225,8 @@ const RegisterForm = () => {
                   </svg>
                 </div>
                 <div>
-                  <p class="font-bold">Verificación</p>
-                  <p class="text-sm">
+                  <p className="font-bold">Verificación</p>
+                  <p className="text-sm">
                     Se ha enviado un correo electrónico de verificación. Por
                     favor, revisa tu correo.
                   </p>

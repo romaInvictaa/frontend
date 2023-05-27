@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const REGISTER_URL = "http://localhost:4000/users/";
+const REGISTER_URL = "/api/users/";
 
 const LoginForm = () => {
+
   const auth = useAuth();
-  // console.log(auth);
+  console.log("auth", auth);
+
   const [error, setError] = useState(null);
-  const { displayName } = auth.user;
-  // console.log(displayName);
-  const usuariomail = auth.user.email;
-  // console.log(usuariomail);
+
+  const [ displayName, setDisplayName ] = useState(auth.user.displayName);
+  const [ email, setEmail ] = useState(auth.user.email);
+
   const { login, loginWithGoogle } = useAuth();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+
+  const router = useRouter();
 
   // const [registerEmail, setRegisterEmail] = useState("");
   // const [registerPassword, setRegisterPassword] = useState("");
@@ -35,15 +40,26 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(loginEmail, loginPassword);
+      router.push('/');
     } catch (error) {
       setError('Usuario o contraseña inválidos');
     }
   };
 
-  const handleGoogleLogin = (e) => {
+  const handleGoogleLogin = async (e) => {
     e.preventDefault();
-    loginWithGoogle();
+    try{
+      await loginWithGoogle();
+    }
+    catch (error) {
+      setError('Usuario o contraseña inválidos');
+    } finally {
+      setDisplayName(auth.user.displayName);
+      setEmail(auth.user.email);
+    }
+
     registerUser();
+    router.push('/');
   };
 
   const handleLogout = (e) => {
@@ -59,10 +75,10 @@ const LoginForm = () => {
 
   // obtener el usuario que inicio sesion con google y enviar su nombre a la base de datos
   const registerUser = async () => {
-    console.log("Datos enviados a la base de datos:", {
-      user_name: displayName,
-      user_email: usuariomail,
-    });
+    // console.log("Datos enviados a la base de datos:", {
+    //   user_name: displayName,
+    //   user_email: usuariomail,
+    // });
     const response = await fetch(REGISTER_URL, {
       method: "POST",
       headers: {
@@ -70,14 +86,14 @@ const LoginForm = () => {
       },
       body: JSON.stringify({
         user_name: displayName,
-        user_email: usuariomail,
+        user_email: email,
+        user_phone: null,
+        user_city: null
       }),
     });
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
   };
-
-
 
   return (
     <div className="container">
@@ -161,11 +177,11 @@ const LoginForm = () => {
                 class="bg-red-100 mb-8  border border-red-400 text-red-700 px-4 py-3 rounded relative"
                 role="alert"
               >
-                <strong class="font-bold">Ups! &nbsp;</strong>
-                <span class="block sm:inline">{error}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <strong className="font-bold">Ups! &nbsp;</strong>
+                <span className="block sm:inline">{error}</span>
+                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
                   <svg
-                    class="fill-current h-6 w-6 text-red-500"
+                    className="fill-current h-6 w-6 text-red-500"
                     role="button"
                     onClick={() => setError(null)}
                     xmlns="http://www.w3.org/2000/svg"
@@ -177,11 +193,9 @@ const LoginForm = () => {
                 </span>
               </div>
             )}
-            <Link href="/coliseum">
               <button className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg">
                 Iniciar sesión
               </button>
-            </Link>
           </form>
 
           <button

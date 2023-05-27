@@ -19,14 +19,14 @@ const resetPassword = async (email) => {
 
 
 export const AuthContext = createContext();
-console.log("AuthContext", AuthContext);
+//console.log("AuthContext", AuthContext);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
     console.error("useAuth must be used within an AuthProvider");
   }
-  console.log("contexto", context);
+  // console.log("contexto", context);
   return context;
 };
 
@@ -62,13 +62,13 @@ export function AuthProvider({ children }) {
           );
         });
     }
-    console.log(response);
+    //console.log(response);
   };
 
   // inicio de sesion manual
   const login = async (email, password) => {
     const response = await signInWithEmailAndPassword(auth, email, password);
-    console.log(response);
+    //console.log(response);
   };
 
   // inicio de sesion con google
@@ -81,7 +81,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     const response = await signOut(auth);
     window.location.reload();
-    console.log(response);
+    //console.log(response);
   };
 
   return (

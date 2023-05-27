@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { CategoryCard, Header } from '@/components'
+import { useAuth } from '../context/AuthContext';
 
 const categories = [
   {
@@ -23,6 +24,7 @@ const categories = [
 ]
 
 export default function Home() {
+
   return (
     <>
     <Header />
