@@ -15,15 +15,15 @@ export function Coliseo(props) {
         geometry={nodes.coliseo.geometry}
         material={materials.Material}
         position={[0, 0, 0]}
-        scale={1.1}
+        scale={1}
       />
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Floor.geometry}
         material={materials.wall}
-        position={[15, -55, -20]}
-        scale={80}
+        position={[0, -50, 0]}
+        scale={250}
       />
     </group>
   );

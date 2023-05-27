@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const REGISTER_URL = "http://localhost:4000/users/";
+const REGISTER_URL = "/api/users/";
 
 const LoginForm = () => {
+
   const auth = useAuth();
-  // console.log(auth);
+  console.log("auth", auth);
+
   const [error, setError] = useState(null);
-  const { displayName } = auth.user;
-  // console.log(displayName);
-  const usuariomail = auth.user.email;
-  // console.log(usuariomail);
+
+  const [ displayName, setDisplayName ] = useState(auth.user.displayName);
+  const [ email, setEmail ] = useState(auth.user.email);
+
+  useEffect(() => {
+    if (auth.user) {
+      setDisplayName(auth.user.displayName);
+      setEmail(auth.user.email);
+    }
+  }, [auth.user]);
+
   const { login, loginWithGoogle } = useAuth();
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+
+  const router = useRouter();
 
   // const [registerEmail, setRegisterEmail] = useState("");
   // const [registerPassword, setRegisterPassword] = useState("");
@@ -35,21 +47,25 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(loginEmail, loginPassword);
+      router.push('/');
     } catch (error) {
       setError('Usuario o contraseña inválidos');
     }
   };
 
-  const handleGoogleLogin = (e) => {
+  const handleGoogleLogin = async (e) => {
     e.preventDefault();
-    loginWithGoogle();
-    registerUser();
+    try {
+      await loginWithGoogle();
+      setDisplayName(auth.user.displayName);
+      setEmail(auth.user.email);
+      await registerUser(); // Espera a que la función registerUser se complete antes de continuar
+      router.push('/');
+    } catch (error) {
+      setError('Usuario o contraseña inválidos');
+    }
   };
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    auth.logout();
-  };
+  
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -58,27 +74,31 @@ const LoginForm = () => {
   }
 
   // obtener el usuario que inicio sesion con google y enviar su nombre a la base de datos
-  const registerUser = async () => {
-    console.log("Datos enviados a la base de datos:", {
-      user_name: displayName,
-      user_email: usuariomail,
+  const registerUser = () => {
+    return new Promise(async (resolve, reject) => {
+      console.log("displayName", displayName);
+      console.log("email", email);
+      try {
+        const response = await fetch(REGISTER_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            user_name: displayName,
+            user_email: email,
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
+        resolve(data); // Resuelve la promesa con los datos de respuesta
+      } catch (error) {
+        reject(error); // Rechaza la promesa con el error
+      }
     });
-    const response = await fetch(REGISTER_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_name: displayName,
-        user_email: usuariomail,
-      }),
-    });
-    const data = await response.json();
-    console.log(data);
   };
 
-
-
+  
   return (
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
@@ -161,11 +181,11 @@ const LoginForm = () => {
                 class="bg-red-100 mb-8  border border-red-400 text-red-700 px-4 py-3 rounded relative"
                 role="alert"
               >
-                <strong class="font-bold">Ups! &nbsp;</strong>
-                <span class="block sm:inline">{error}</span>
-                <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <strong className="font-bold">Ups! &nbsp;</strong>
+                <span className="block sm:inline">{error}</span>
+                <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
                   <svg
-                    class="fill-current h-6 w-6 text-red-500"
+                    className="fill-current h-6 w-6 text-red-500"
                     role="button"
                     onClick={() => setError(null)}
                     xmlns="http://www.w3.org/2000/svg"
@@ -177,11 +197,9 @@ const LoginForm = () => {
                 </span>
               </div>
             )}
-            <Link href="/coliseum">
               <button className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg">
                 Iniciar sesión
               </button>
-            </Link>
           </form>
 
           <button
