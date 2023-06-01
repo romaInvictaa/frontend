@@ -56,4 +56,4 @@ const ImageCarousel = () => {
 
 export default ImageCarousel;
 
-const images = ["/colosseum.png", "/pantheon.png", "/bg.png"];
+const images = ["/carrusel/colosseum.png", "/carrusel/pantheon.png", "/bg.png", "/carrusel/mosaico.jpg"];
