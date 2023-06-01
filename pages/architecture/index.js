@@ -33,13 +33,13 @@ const pages = [
     {
         name: 'Coliseo',
         description: 'Descubre la historia del gran Coliseo de Roma',
-        image: '/colosseum.png',
+        image: '/carrusel/colosseum.png',
         slug: '/architecture/colosseum',
     },
     {
         name: 'Panteón',
         description: 'Descubre la historia del gran Panteón de Roma',
-        image: '/pantheon.png',
+        image: '/carrusel/pantheon.png',
         slug: '/architecture/pantheon',
     }
 ]
