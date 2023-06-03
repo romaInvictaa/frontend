@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const PageCard = ({ page }) => {
     return (
-        <Link href={`${page.slug}`}>
+        <Link href={`${page.slug}`} data-testid={page.name}>
             <div className='group shadow-xl rounded-3xl mb-6 bg-cream-primary transition duration-500 hover:scale-105 cursor-pointer 
                             bg-gradient-to-r from-transparent via-light-gray to-transparent 
                             relative hover:before:absolute hover:before:inset-0 hover:before:-translate-x-full hover:before:animate-[shimmer_1s] hover:before:bg-gradient-to-r hover:before:from-transparent hover:before:via-light-gray/25 hover:before:to-transparent 
