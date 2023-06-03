@@ -17,15 +17,15 @@ const History = () => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:pt-8 w-full">
+        <div className="grid grid-cols-2 w-full">
           {pages.map((page, index) => (
             <div className="col-span-2 md:col-span-1 sm:px-6" key={index}>
               <PageCard page={page} />
             </div>
           ))}
         </div>
-        <div className="flex justify-center col-span-2 row-span-1">
-          <Link href={"/test"}>
+        <div className="flex justify-center col-span-2 ">
+          <Link href="/architecture/testarchitecture">
             <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-8 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
               Test
             </span>

@@ -9,17 +9,16 @@ const PageCard = ({ page }) => {
                             relative hover:before:absolute hover:before:inset-0 hover:before:-translate-x-full hover:before:animate-[shimmer_1s] hover:before:bg-gradient-to-r hover:before:from-transparent hover:before:via-light-gray/25 hover:before:to-transparent 
                             isolate overflow-hidden shadow-xl shadow-black/5 before:border-t before:border-light-gray/25'>
 
-                <div className='grid grid-cols-2 grid-rows-4'>
-                    <div className='col-span-1 row-span-4'>
+                <div className='grid grid-cols-1'>
+                    <div className='col-span-1'>
                         <img
                             className='rounded-3xl'
                             src={page.image}
                             alt={page.name}
                             width={1000}
-                           
                         />
                     </div>
-                    <div className='col-span-1 px-2 px-8 py-4 row-span-2'>
+                    <div className='col-span-1 px-2 px-8 py-4'>
                         <h3 className="text-3xl font-semibold text-dark-slate-blue flex justify-center xl:text-xl xl:mb-2">
                             {page.name}
                         </h3>

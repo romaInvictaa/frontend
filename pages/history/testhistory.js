@@ -1,10 +1,10 @@
 import React from "react";
 import { Header, PageCard } from "@/components";
 
-const test = () => {
+const testhistory = () => {
     return (
         <>
-            <Header slug={"/test"}/>
+            <Header slug={"/history"} />
             <div className='container mx-auto px-6 md:px-0'>
                 <div className="grid grid-cols-1">
                     {/* <div className="ml-64">
@@ -46,4 +46,4 @@ const pages = [
 
 
 
-export default test;
+export default testhistory;

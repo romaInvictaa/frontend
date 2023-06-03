@@ -17,10 +17,10 @@ const History = () => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-2 sm:pt-8 w-full ">
+        <div className="grid grid-cols-2 w-full">
           {pages.map((page, index) => (
             <div
-              className="col-span-2  md:col-span-1 sm:px-6 "
+              className="col-span-2 md:row-span-1 md:col-span-1 sm:px-6"
               key={index}
             >
               <PageCard page={page} />
@@ -28,7 +28,7 @@ const History = () => {
           ))}
         </div>
         <div className="flex justify-center col-span-2 ">
-          <Link href="/test">
+          <Link href="/history/testhistory">
             <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-8 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
               Test
             </span>
@@ -42,7 +42,7 @@ const History = () => {
 const pages = [
   {
     name: "Augusto prima porta",
-    description: "Descubre la historia de Augusto prima porta",
+    description: "Descubre la historia del gran Augusto prima porta",
     image: "/primaporta.jpeg",
     slug: "/history/primaporta",
   },
