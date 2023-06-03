@@ -8,7 +8,7 @@ const REGISTER_URL = "/api/users/";
 const LoginForm = () => {
 
   const auth = useAuth();
-  console.log("auth", auth);
+  //console.log("auth", auth);
 
   const [error, setError] = useState(null);
 
@@ -76,8 +76,8 @@ const LoginForm = () => {
   // obtener el usuario que inicio sesion con google y enviar su nombre a la base de datos
   const registerUser = () => {
     return new Promise(async (resolve, reject) => {
-      console.log("displayName", displayName);
-      console.log("email", email);
+      //console.log("displayName", displayName);
+      //console.log("email", email);
       try {
         const response = await fetch(REGISTER_URL, {
           method: "POST",
@@ -90,7 +90,7 @@ const LoginForm = () => {
           }),
         });
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         resolve(data); // Resuelve la promesa con los datos de respuesta
       } catch (error) {
         reject(error); // Rechaza la promesa con el error

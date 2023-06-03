@@ -34,8 +34,8 @@ export default function Home() {
           {/* seccion del titulo */}
           <div className='grid grid-cols-1 xl:px-16'>
             <span className='text-md lg:text-xl text-orange-primary font-semibold'>BIENVENIDOS A</span>
-            <span className='text-5xl md:text-4xl lg:text-6xl font-semibold mb-8 text-dark-slate-blue'>Roma Invicta</span>
-            <span className='text-sm sm:text-base rounded-lg bg-cream-primary p-8 shadow-lg text-justify xl:p-10'>
+            <span className='text-5xl md:text-4xl lg:text-6xl font-semibold mb-8 text-dark-slate-blue' data-testid="title">Roma Invicta</span>
+            <span className='text-sm sm:text-base rounded-lg bg-cream-primary p-8 shadow-lg text-justify xl:p-10' data-testid="text">
               Descubre la Ciudad Eterna.
               Roma te espera con su gran historia, arte, cultura y gastronomía.
               En nuestra página web encontrarás todo lo que necesitas para rememorar
@@ -45,10 +45,12 @@ export default function Home() {
           </div>
           
         </div>
-        <div className='col-span-12 md:col-span-5 lg:col-span-4 py-8 sm:px-8 md:px-6 xl:px-10 xl:py-16'>
+        <div className='col-span-12 md:col-span-5 lg:col-span-4 py-8 sm:px-8 md:px-6 xl:px-10 xl:py-16' data-testid="cards">
           {/* seccion de las categorias */}
           {categories.map((category) => (
-            <CategoryCard key={category.name} category={category} />
+            // <div data-testid={category.name} key={category.name}>
+              <CategoryCard key={category.name} category={category}/>
+            //</div>
           ))}
         </div>
       </div>

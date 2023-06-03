@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const registrado = onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
-        console.log("no hay usuario");
+        //console.log("no hay usuario");
       } else {
         setUser(currentUser);
       }
@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
     if (response.user) {
       sendEmailVerification(auth.currentUser)
         .then(() => {
-          console.log("Se ha enviado un correo electrónico de verificación");
+          //console.log("Se ha enviado un correo electrónico de verificación");
         })
         .catch((error) => {
           console.error(
