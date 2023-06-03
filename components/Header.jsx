@@ -110,6 +110,7 @@ const Header = ({ slug }) => {
                                 currentTarget.src = "/profileIcon.png";
                             }}
                         />
+                        
 
                         {profileMenu ? (
                             <div className="md:float-right mt-2">
@@ -123,6 +124,8 @@ const Header = ({ slug }) => {
                         <span className="md:float-right py-2 align-middle text-black ml-6 font-semibold cursor-pointer mt-2">
                             {user.displayName ? user.displayName : displayName}
                         </span>
+
+                    
 
                     </div>
                 ) : (
@@ -163,6 +166,7 @@ const Header = ({ slug }) => {
                                 </span>
                             </Link>
                         </div>
+                        
                     </div>
                 ) : (
                     <div className="md:hidden bg-dark-slate-blue pb-4 mb-4">
