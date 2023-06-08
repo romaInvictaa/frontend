@@ -13,13 +13,7 @@ const testhistory = () => {
   ];
 
   const handleRespuesta = (opcionId) => {
-    if (respuestas.includes(opcionId)) {
-      // Si la opción ya está seleccionada, la eliminamos de las respuestas
-      setRespuestas(respuestas.filter((id) => id !== opcionId));
-    } else {
-      // Si la opción no está seleccionada, la agregamos a las respuestas
-      setRespuestas([...respuestas, opcionId]);
-    }
+    setRespuestas([opcionId]);
   };
 
   return (
@@ -36,29 +30,31 @@ const testhistory = () => {
             <h1 className="text-3xl mx-8 mt-8 font-semibold text-dark-slate-blue flex justify-center xl:text-xl xl:mb-2">
               Cual era el propósito principal del Coliseo Romano?
             </h1>
-            <div className='col-span-2 ml-12'>
-                        <img
-                            className='rounded-xl'
-                            src={ "/carrusel/mosaico.jpg"}
-                            width={500}
-                        />
-                    </div>
+
+            <div className="col-span-2 ml-12">
+              <img
+                className="rounded-xl"
+                src={"/carrusel/mosaico.jpg"}
+                width={500}
+              />
+            </div>
             <div className="flex flex-col mx-8 mb-6 mt-2">
               {opciones.map((opcion) => (
-                <label
-                  key={opcion.id}
-                  className="group shadow-xl rounded-3xl mb-2 py-4 px-2 bg-white transition duration-500 hover:scale-105 cursor-pointer 
-                            bg-gradient-to-r from-transparent via-light-gray to-transparent 
-                            relative hover:before:absolute hover:before:inset-0 hover:before:-translate-x-full hover:before:animate-[shimmer_1s] hover:before:bg-gradient-to-r hover:before:from-transparent hover:before:via-light-gray/25 hover:before:to-transparent 
-                            isolate overflow-hidden shadow-xl shadow-black/5 before:border-t before:border-light-gray/25" >
-                  <input
-                    type="checkbox"
-                    className="form-checkbox h-3 w-5 text-blue-500"
-                    checked={respuestas.includes(opcion.id)}
-                    onChange={() => handleRespuesta(opcion.id)}
-                  />
-                  <span className="ml-2 text-lg">{opcion.texto}</span>
-                </label>
+                 <label
+                 key={opcion.id}
+                 className="group shadow-xl rounded-3xl mb-2 py-4 px-2 bg-white transition duration-500 hover:scale-105 cursor-pointer 
+                           bg-gradient-to-r from-transparent via-light-gray to-transparent 
+                           relative hover:before:absolute hover:before:inset-0 hover:before:-translate-x-full hover:before:animate-[shimmer_1s] hover:before:bg-gradient-to-r hover:before:from-transparent hover:before:via-light-gray/25 hover:before:to-transparent 
+                           isolate overflow-hidden shadow-xl shadow-black/5 before:border-t before:border-light-gray/25"
+               >
+                 <input
+                   type="radio" // Cambiar el tipo de checkbox a radio
+                   className="form-radio h-3 w-5 text-blue-500"
+                   checked={opcion.id === respuestas[0]} // Comprobar si la opción es igual a la opción seleccionada
+                   onChange={() => handleRespuesta(opcion.id)}
+                 />
+                 <span className="ml-2 text-lg">{opcion.texto}</span>
+               </label>
               ))}
             </div>
 
