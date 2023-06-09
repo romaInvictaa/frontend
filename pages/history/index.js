@@ -1,33 +1,66 @@
 import React from "react";
-import { Header } from "@/components";
+import { Header, PageCard } from "@/components";
+import Link from "next/link";
+import { useAuth } from '../../context/AuthContext.jsx';
+
 
 const History = () => {
-    return (
-        <>
-            <Header />
-            <div className='container mx-auto px-10'>
-                <div className='grid grid-cols-10 w-full'>
-                    <div className='col-span-10 md:col-span-5 lg:col-span-6 py-2 sm:py-6 sm:px-6'>
-                        {/* seccion del titulo */}
-                        <div className='grid grid-cols-1 xl:px-16'>
-                            <span className='text-5xl md:text-4xl lg:text-6xl font-semibold mb-8 text-dark-slate-blue'>Historia</span>
-                            <span className='text-sm sm:text-base rounded-lg bg-cream-primary p-8 shadow-lg text-justify xl:p-10'>
-                                Descubre la Ciudad Eterna.
-                                Roma te espera con su gran historia, arte, cultura y gastronomía.
-                                En nuestra página web encontrarás todo lo que necesitas para rememorar
-                                la antigua Roma y disfrutar al máximo de su gloria histórica
-                                ¡Bienvenidos a Roma!
-                            </span>
-                        </div>
-                    </div>
-                    <div className='col-span-12 md:col-span-5 lg:col-span-4 py-8 sm:px-8 md:px-6 xl:px-10 xl:py-16'>
-                        CATEGORIAS
-                    </div>
-                </div>
+  const auth = useAuth();
+  const user = auth.user;
+  return (
+    <>
+      <Header slug={"/"} />
+      <div className="container mx-auto px-6 md:px-0">
+        <div className="grid grid-cols-1">
+          {/* <div className="ml-64">
+                        <span className='text-md lg:text-xl text-orange-primary font-semibold'>TE PRESENTAMOS</span>
+                    </div> */}
+          <div className="flex justify-center py-2">
+            <span className="text-5xl md:text-4xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue">
+              Tesoros de la antigua Roma
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 w-full">
+          {pages.map((page, index) => (
+            <div
+              className="col-span-2 md:row-span-1 md:col-span-1 sm:px-6"
+              key={index}
+            >
+              <PageCard page={page} />
             </div>
+          ))}
+        </div>
+        {user ? (
+        <div className="flex justify-center col-span-2 ">
+          <Link href="/history/testhistory">
+            <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-8 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
+              Test
+            </span>
+          </Link>
+        </div>
+        ) : (
+          <div className="flex justify-center col-span-2 ">
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
 
-        </>
-    );
-}
+const pages = [
+  {
+    name: "Augusto prima porta",
+    description: "Descubre la historia del gran Augusto prima porta",
+    image: "/carrusel/primaporta.jpeg",
+    slug: "/history/primaporta",
+  },
+  {
+    name: "Mosaico de issos",
+    description: "Descubre la historia del gran Mosaico de issos",
+    image: "/carrusel/mosaico.jpg",
+    slug: "/history/mosaico",
+  },
+];
 
 export default History;

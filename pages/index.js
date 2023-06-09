@@ -12,13 +12,13 @@ const categories = [
   {
     name: 'Arquitectura',
     description: 'Descubre las edificaciones más impresionantes',
-    image: '/architecture.png',
+    image: '/arquitectura.png',
     slug: 'architecture',
   },
   {
     name: 'Arte',
     description: 'Un repaso por las grandes obras de arte de Roma',
-    image: '/art.png',
+    image: '/arte.png',
     slug: 'art',
   },
 ]

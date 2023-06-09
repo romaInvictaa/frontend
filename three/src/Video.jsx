@@ -12,7 +12,7 @@ export default function Video() {
     start: pause,
   };
 
-  const videoTexture = useVideoTexture('/video/cielo.mp4', props);
+  const videoTexture = useVideoTexture('/video/fondo1.mp4', props);
 
   const playVideo = () => {
     setPause(true);
