@@ -18,7 +18,7 @@ export default function PrimaPortaExperience() {
         <mesh position={[-1.5, 0, 1]} >
         {/* <Video />  */}
         
-        <PrimaPorta position={[0, 0, 0]}  scale = {0.1}/>
+        <PrimaPorta position={[0, 0, 10]}  scale = {0.1}/>
         <FloorColiseo/>        
         
     

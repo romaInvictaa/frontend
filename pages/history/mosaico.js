@@ -29,7 +29,7 @@ const Mosaico = () => {
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
             <InfoCard text={text}/>
-            <ImageCarousel />
+            <ImageCarousel images={images} />
           </div>
       </div>
       </div>
@@ -40,3 +40,4 @@ const Mosaico = () => {
 export default Mosaico;
 
 const text = "El mosaico representa la batalla de Issos, en especial la carga de los hetairoi de Alejandro guiados por su líder mientras los soldados de Darío III Codomano intentan proteger a su rey. El mosaico tiene unas dimensiones de 2.72 por 5.13 metros."
+const images = ["/mosaico/mosaico1.jpg", "/mosaico/mosaico5.jpg", "/mosaico/mosaico6.jpg", "/mosaico/mosaico4.jpg"];

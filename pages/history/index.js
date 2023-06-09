@@ -1,8 +1,12 @@
 import React from "react";
 import { Header, PageCard } from "@/components";
 import Link from "next/link";
+import { useAuth } from '../../context/AuthContext.jsx';
+
 
 const History = () => {
+  const auth = useAuth();
+  const user = auth.user;
   return (
     <>
       <Header slug={"/"} />
@@ -27,6 +31,7 @@ const History = () => {
             </div>
           ))}
         </div>
+        {user ? (
         <div className="flex justify-center col-span-2 ">
           <Link href="/history/testhistory">
             <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-8 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
@@ -34,6 +39,10 @@ const History = () => {
             </span>
           </Link>
         </div>
+        ) : (
+          <div className="flex justify-center col-span-2 ">
+          </div>
+        )}
       </div>
     </>
   );
@@ -43,7 +52,7 @@ const pages = [
   {
     name: "Augusto prima porta",
     description: "Descubre la historia del gran Augusto prima porta",
-    image: "/primaporta.jpeg",
+    image: "/carrusel/primaporta.jpeg",
     slug: "/history/primaporta",
   },
   {

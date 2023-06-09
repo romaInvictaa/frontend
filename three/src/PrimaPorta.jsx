@@ -13,7 +13,7 @@ export function PrimaPorta(props) {
         castShadow
         receiveShadow
         geometry={nodes.imagetostl_mesh0.geometry}
-        material={materials.mat0}
+        material={materials.Material}
       />
     </group>
   );
