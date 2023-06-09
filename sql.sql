@@ -1,0 +1,8 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  user_name VARCHAR(255) NOT NULL,
+  user_email VARCHAR(255) NOT NULL,
+  history VARCHAR(255) NOT NULL,
+  art VARCHAR(255) NOT NULL,
+  architecture VARCHAR(255) NOT NULL
+);
