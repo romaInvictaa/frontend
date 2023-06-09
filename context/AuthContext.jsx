@@ -86,6 +86,7 @@ export function AuthProvider({ children }) {
 
  // traer usuario de google y enviarlo a la base de datos
   const registerUser = async (displayName,email) => {
+    //console.log("nombre", displayName,"email", email);
     const response = await fetch("/api/users/", {
       method: "POST",
       headers: {
@@ -94,6 +95,9 @@ export function AuthProvider({ children }) {
       body: JSON.stringify({ 
         user_name: displayName,
         user_email: email,
+        history: "0",
+        art: "0",	
+        architecture: "0",
       }),
     });
     const data = await response.json();

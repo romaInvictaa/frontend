@@ -13,7 +13,7 @@ const pool = new Pool({
 // obtener usuarios
 export default async function getUsers(req, res) {
     if (req.method === 'POST') {
-      const { user_name, user_lastname, user_phone, user_email, user_city } = req.body;
+      const { user_name, user_email, history, art, architecture } = req.body;
   
       // Consultar si el correo electrónico ya existe
       const existingUser = await pool.query('SELECT * FROM users WHERE user_email = $1', [user_email]);
@@ -25,14 +25,14 @@ export default async function getUsers(req, res) {
   
       // Insertar el usuario en la base de datos
       const response = await pool.query(
-        'INSERT INTO users (user_name, user_lastname, user_phone, user_email, user_city) VALUES ($1, $2, $3, $4, $5)',
-        [user_name, user_lastname, user_phone, user_email, user_city]
+        'INSERT INTO users (user_name, user_email, history, art, architecture) VALUES ($1, $2, $3, $4, $5)',
+        [user_name, user_email, history, art, architecture]
       );
   
       res.json({
         message: 'User added successfully',
         body: {
-          users: { user_name, user_lastname, user_phone, user_email, user_city }
+          users: { user_name, user_email, history, art, architecture }
         }
       });
     } else if (req.method === 'GET') {
