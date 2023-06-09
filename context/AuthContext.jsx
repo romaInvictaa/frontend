@@ -21,6 +21,7 @@ const resetPassword = async (email) => {
 export const AuthContext = createContext();
 //console.log("AuthContext", AuthContext);
 
+// hook para usar el contexto
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -30,6 +31,7 @@ export const useAuth = () => {
   return context;
 };
 
+// proveedor del contexto de autenticacion
 export function AuthProvider({ children }) {
   const [user, setUser] = useState("");
   useEffect(() => {
@@ -74,8 +76,30 @@ export function AuthProvider({ children }) {
   // inicio de sesion con google
   const loginWithGoogle = async () => {
     const responseGoogle = new GoogleAuthProvider();
-    return await signInWithPopup(auth, responseGoogle);
+    // return await signInWithPopup(auth, responseGoogle);
+    const xd = await signInWithPopup(auth, responseGoogle);
+    console.log(xd);
+    registerUser(xd.user.displayName,xd.user.email);
+    return xd;
   };
+
+
+ // traer usuario de google y enviarlo a la base de datos
+  const registerUser = async (displayName,email) => {
+    const response = await fetch("/api/users/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        user_name: displayName,
+        user_email: email,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
 
   // cerrar sesion
   const logout = async () => {

@@ -28,9 +28,6 @@ const LoginForm = () => {
 
   const router = useRouter();
 
-  // const [registerEmail, setRegisterEmail] = useState("");
-  // const [registerPassword, setRegisterPassword] = useState("");
-
   const handleLoginEmailChange = (e) => {
     setLoginEmail(e.target.value);
   };
@@ -39,10 +36,6 @@ const LoginForm = () => {
     setLoginPassword(e.target.value);
   };
 
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   login(loginEmail, loginPassword);
-  // };
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -57,9 +50,6 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await loginWithGoogle();
-      setDisplayName(auth.user.displayName);
-      setEmail(auth.user.email);
-      await registerUser(); // Espera a que la función registerUser se complete antes de continuar
       router.push('/');
     } catch (error) {
       setError('Usuario o contraseña inválidos');
@@ -72,32 +62,6 @@ const LoginForm = () => {
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
-
-  // obtener el usuario que inicio sesion con google y enviar su nombre a la base de datos
-  const registerUser = () => {
-    return new Promise(async (resolve, reject) => {
-      //console.log("displayName", displayName);
-      //console.log("email", email);
-      try {
-        const response = await fetch(REGISTER_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user_name: displayName,
-            user_email: email,
-          }),
-        });
-        const data = await response.json();
-        //console.log(data);
-        resolve(data); // Resuelve la promesa con los datos de respuesta
-      } catch (error) {
-        reject(error); // Rechaza la promesa con el error
-      }
-    });
-  };
-
   
   return (
     <div className="container">
