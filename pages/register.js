@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import Link from "next/link";
 
-
 //const { REGISTER_URL } = process.env;
 const REGISTER_URL = "/api/users/";
 
@@ -10,11 +9,9 @@ const RegisterForm = () => {
   //console.log(REGISTER_URL);
   const { register } = useAuth();
   const [user_name, setUser_name] = useState("");
-  const [user_lastname, setUser_lastname] = useState("");
-  const [user_phone, setUser_phone] = useState("");
-  const [user_city, setUser_city] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
+  // const [registerPasswordConfirm, setRegisterPasswordConfirm] = useState("");
   const [verificationSent, setVerificationSent] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
 
@@ -29,7 +26,7 @@ const RegisterForm = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-    await register(registerEmail, registerPassword);
+      await register(registerEmail, registerPassword);
       setVerificationSent(true);
       setEmailExists(false);
       registerUser();
@@ -37,7 +34,6 @@ const RegisterForm = () => {
       setEmailExists(true);
       console.log(error);
     }
-
   };
 
   useEffect(() => {
@@ -59,22 +55,24 @@ const RegisterForm = () => {
     //   user_city: user_city,
     //   user_email: registerEmail,
     // });
-      const response = await fetch(REGISTER_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_name: user_name,
-          user_lastname: "",
-          user_phone: user_phone,
-          user_city: user_city,
-          user_email: registerEmail,
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
+    const response = await fetch(REGISTER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_name: user_name,
+        user_email: registerEmail,
+        history: "0",
+        art: "0",	
+        architecture: "0",
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
   };
+
+
 
   return (
     <div className="container">
@@ -92,45 +90,7 @@ const RegisterForm = () => {
                 id="user_name"
                 value={user_name}
                 onChange={(e) => setUser_name(e.target.value)}
-                data-testid="user_name"	
-              />
-            </div>
-            {/* APELLIDO */}
-            {/* <div>
-              <label className="text-lg">Apellido:</label>
-              <input
-                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
-                required
-                type="text"
-                id="user_lastname"
-                value={user_lastname}
-                onChange={(e) => setUser_lastname(e.target.value)} // Corregir el evento onChange
-              />
-            </div> */}
-            {/* Numero de Telefono */}
-            <div>
-              <label className="text-lg">Numero de Telefono:</label>
-              <input
-                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
-                required
-                type="number"
-                id="user_phone"
-                value={user_phone}
-                onChange={(e) => setUser_phone(e.target.value)} // Corregir el evento onChange
-                data-testid="user_phone"	
-              />
-            </div>
-            {/* CIUDAD */}
-            <div>
-              <label className="text-lg">Ciudad:</label>
-              <input
-                className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
-                required
-                type="text"
-                id="user_city"
-                value={user_city}
-                onChange={(e) => setUser_city(e.target.value)} // Corregir el evento onChange
-                data-testid="user_city"
+                data-testid="user_name"
               />
             </div>
             {/* EMAIL */}
@@ -145,16 +105,17 @@ const RegisterForm = () => {
                 id="register-email"
                 value={registerEmail}
                 onChange={handleRegisterEmailChange}
-                data-testid="user_email"	
+                data-testid="user_email"
               />
               <div className="flex items-center mt-2 mb-8">
-              {emailExists && (
-                <p className="text-red-500">
-                  El correo electrónico ya está registrado
-                </p>
-              )}
+                {emailExists && (
+                  <p className="text-red-500">
+                    El correo electrónico ya está registrado
+                  </p>
+                )}
               </div>
             </div>
+            {/* PASSWORD */}
             <div className="relative">
               <label className="text-lg" htmlFor="register-password">
                 Contraseña:
@@ -211,10 +172,7 @@ const RegisterForm = () => {
                   </svg>
                 )}
               </button>
-              
             </div>
-           
-
             <button
               className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
               type="submit"
@@ -223,13 +181,13 @@ const RegisterForm = () => {
               Registrarse
             </button>
             <div className="mt-2 mb-2 flex justify-center">
-            <span href="/recover">¿Ya tienes cuenta?&nbsp;</span>
-            <Link href="/login">
-              <span className="text-orange-primary hover:underline">
-                Login
-              </span>
-            </Link>
-          </div>
+              <span href="/recover">¿Ya tienes cuenta?&nbsp;</span>
+              <Link href="/login">
+                <span className="text-orange-primary hover:underline">
+                  Login
+                </span>
+              </Link>
+            </div>
           </form>
           {verificationSent && (
             <div
