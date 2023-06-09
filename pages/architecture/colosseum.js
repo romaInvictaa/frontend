@@ -8,7 +8,7 @@ const Coliseum = () => {
     aspect: 2,
     near: 0.1,
     far: 400,
-    position: [-10, 3, 3],
+    position: [2, 15, 25],
   };
 
   return (

@@ -19,7 +19,9 @@ export default function PanteonExperience() {
         
         <Panteon position={[0,1,0]}/>
         <Arena />
-        {/* <Float speed={6}>
+
+        
+         {/*<Float speed={6}>
         <Text
             fontSize={2}
             fontFamily="Trebuchet MS"
@@ -32,7 +34,7 @@ export default function PanteonExperience() {
         >
             PANTEON ROMANO
         </Text>
-        </Float>  */}
+</Float> */}
         </mesh>
     
     

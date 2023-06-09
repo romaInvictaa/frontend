@@ -13,6 +13,7 @@ const CategoryCard = ({ category }) => {
                             alt={category.name}
                             width={80}
                             height={80} />
+                        
                     </div>
                     <div className='col-span-2 px-2'>
                         <h3 className="text-lg font-semibold text-dark-slate-blue flex justify-center xl:text-xl xl:mb-2">
