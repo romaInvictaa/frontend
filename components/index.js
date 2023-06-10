@@ -5,3 +5,5 @@ export { default as InfoCard } from './InfoCard'
 export { default as ImageCarousel } from './ImageCarousel'
 export { default as AccountCard } from './AccountCard'
 export { default as QuestionCard } from './QuestionCard'
+export { default as Loader } from './Loader';
+export { default as QuestionImage } from './QuestionImage';

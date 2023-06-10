@@ -3,12 +3,12 @@ const { Pool } = require('pg')
 // new pool instance conect to database elephantSQL
 
 const pool = new Pool({
-    user: 'vbpuazlo',
-    host: 'drona.db.elephantsql.com',
-    database: 'vbpuazlo',
-    password: 'v94chSwTqFJ1QvOJZfb4E68fHEK_zE7V',
-    port: 5432,
-})
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: 5432,
+});
 
 // obtener usuarios
 export default async function getUsers(req, res) {
