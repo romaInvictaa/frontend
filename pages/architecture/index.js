@@ -36,7 +36,8 @@ const History = () => {
           </Link>
         </div>
         ) : (
-          <div className="flex justify-center col-span-2 ">
+          <div className="flex justify-center col-span-2 bg-white">
+            Inicia sesión para poder realizar el test
           </div>
         )}
       </div>

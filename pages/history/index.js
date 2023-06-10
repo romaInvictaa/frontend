@@ -3,7 +3,6 @@ import { Header, PageCard } from "@/components";
 import Link from "next/link";
 import { useAuth } from '../../context/AuthContext.jsx';
 
-
 const History = () => {
   const auth = useAuth();
   const user = auth.user;
@@ -23,17 +22,14 @@ const History = () => {
         </div>
         <div className="grid grid-cols-2 w-full">
           {pages.map((page, index) => (
-            <div
-              className="col-span-2 md:row-span-1 md:col-span-1 sm:px-6"
-              key={index}
-            >
+            <div className="col-span-2 md:col-span-1 sm:px-6" key={index}>
               <PageCard page={page} />
             </div>
           ))}
         </div>
         {user ? (
         <div className="flex justify-center col-span-2 ">
-          <Link href="/history/testhistory">
+          <Link href="/art/testart">
             <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-8 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
               Test
             </span>
@@ -50,16 +46,16 @@ const History = () => {
 
 const pages = [
   {
-    name: "Augusto prima porta",
-    description: "Descubre la historia del gran Augusto prima porta",
-    image: "/carrusel/primaporta.jpeg",
-    slug: "/history/primaporta",
+    name: "Romulo y Remo",
+    description: "Descubre la historia de Romulo y Remo",
+    image: "/carrusel/romulo.jpg",
+    slug: "/art/romulo",
   },
   {
-    name: "Mosaico de issos",
-    description: "Descubre la historia del gran Mosaico de issos",
-    image: "/carrusel/mosaico.jpg",
-    slug: "/history/mosaico",
+    name: "Ruinas de pompeya",
+    description: "Descubre la historia de las Ruinas de Pompeya",
+    image: "/carrusel/ruinas.jpg",
+    slug: "/art/ruinas",
   },
 ];
 

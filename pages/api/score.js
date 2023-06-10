@@ -10,11 +10,11 @@ const pool = new Pool({
     port: 5432,
   });
 
-export default async function getUserByEmail(req, res) {
+export default async function getUserScore(req, res) {
     if (req.method === 'POST') {
         //console.log("req.body", req.body);
         const user_email = req.body;
-        const response = await pool.query('SELECT * FROM users WHERE user_email = $1', [user_email.user_email]);
+        const response = await pool.query('SELECT architecture, history, art FROM users WHERE user_email = $1', [user_email.user_email]);
         //console.log("response", response);
         res.status(200).json(response.rows);
     } else if (req.method === 'GET') {
