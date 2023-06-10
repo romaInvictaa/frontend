@@ -3,6 +3,7 @@ import { Header, PageCard } from "@/components";
 import Link from "next/link";
 import { useAuth } from '../../context/AuthContext.jsx';
 
+
 const History = () => {
   const auth = useAuth();
   const user = auth.user;
@@ -22,7 +23,10 @@ const History = () => {
         </div>
         <div className="grid grid-cols-2 w-full">
           {pages.map((page, index) => (
-            <div className="col-span-2 md:col-span-1 sm:px-6" key={index}>
+            <div
+              className="col-span-2 md:row-span-1 md:col-span-1 sm:px-6"
+              key={index}
+            >
               <PageCard page={page} />
             </div>
           ))}
@@ -46,16 +50,16 @@ const History = () => {
 
 const pages = [
   {
-    name: "Romulo y Remo",
-    description: "Descubre la historia de Romulo y Remo",
-    image: "/carrusel/romulo.jpg",
-    slug: "/art/romulo",
+    name: "Augusto prima porta",
+    description: "Descubre la historia del gran Augusto prima porta",
+    image: "/carrusel/primaporta.jpeg",
+    slug: "/history/primaporta",
   },
   {
-    name: "Ruinas de pompeya",
-    description: "Descubre la historia de las Ruinas de Pompeya",
-    image: "/carrusel/ruinas.jpg",
-    slug: "/art/ruinas",
+    name: "Mosaico de issos",
+    description: "Descubre la historia del gran Mosaico de issos",
+    image: "/carrusel/mosaico.jpg",
+    slug: "/history/mosaico",
   },
 ];
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Header, PageCard } from "@/components";
 import Link from "next/link";
 
-const testhistory = () => {
+const TestArt = () => {
   const [respuestas, setRespuestas] = useState([]);
 
   const opciones = [
@@ -77,4 +77,4 @@ const testhistory = () => {
   );
 };
 
-export default testhistory;
+export default TestArt;

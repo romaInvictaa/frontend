@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { QuestionImage } from ".";
 
-const QuestionCard = ({ question, setAnswer }) => {
+const QuestionCard = ({ question, setAnswer, marked }) => {
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [answered, setAnswered] = useState(false);
 
     const egdata = { slug: '/carrusel/colosseum.png', answered: answered, text: "El coliseo romano era utilizado para alojar grandes batallas para entretener a la población romana" }
-
+    if (marked !== undefined) {
+        setAnswered(marked);
+    }
     // const options = [1,2,3]
     // console.log(question.options);
 
@@ -16,7 +18,7 @@ const QuestionCard = ({ question, setAnswer }) => {
 
     const handleSubmit = () => {
         if (answered) return;
-        
+
         if (question.options[selectedOption] === question.answer) {
             setAnswer(true);
         } else {

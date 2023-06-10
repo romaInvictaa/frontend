@@ -118,8 +118,7 @@ const Header = ({ slug }) => {
                             </div>
                         ) : (
                             <div></div>
-                        )
-                        }
+                        )}
 
                         <span className="md:float-right py-2 align-middle text-black ml-6 font-semibold cursor-pointer mt-2">
                             {user.displayName ? user.displayName : displayName}
