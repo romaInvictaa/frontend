@@ -53,13 +53,13 @@ const pages = [
     name: "Augusto prima porta",
     description: "Descubre la historia del gran Augusto prima porta",
     image: "/carrusel/primaporta.jpeg",
-    slug: "/history/primaporta",
+    slug: "/art/primaporta",
   },
   {
     name: "Mosaico de issos",
     description: "Descubre la historia del gran Mosaico de issos",
     image: "/carrusel/mosaico.jpg",
-    slug: "/history/mosaico",
+    slug: "/art/mosaico",
   },
 ];
 
