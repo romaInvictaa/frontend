@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext.jsx';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext.jsx";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const REGISTER_URL = "/api/users/";
 
 const LoginForm = () => {
-
   const auth = useAuth();
   //console.log("auth", auth);
 
   const [error, setError] = useState(null);
 
-  const [ displayName, setDisplayName ] = useState(auth.user.displayName);
-  const [ email, setEmail ] = useState(auth.user.email);
+  const [displayName, setDisplayName] = useState(auth.user.displayName);
+  const [email, setEmail] = useState(auth.user.email);
 
   useEffect(() => {
     if (auth.user) {
@@ -22,9 +21,9 @@ const LoginForm = () => {
     }
   }, [auth.user]);
 
-  const { login, loginWithGoogle } = useAuth();
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const { login, loginWithGoogle, loginWithFacebook } = useAuth();
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
 
   const router = useRouter();
 
@@ -40,9 +39,9 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(loginEmail, loginPassword);
-      router.push('/');
+      router.push("/");
     } catch (error) {
-      setError('Usuario o contraseña inválidos');
+      setError("Usuario o contraseña inválidos");
     }
   };
 
@@ -50,24 +49,34 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await loginWithGoogle();
-      router.push('/');
+      router.push("/");
     } catch (error) {
-      setError('Usuario o contraseña inválidos');
+      setError("Usuario o contraseña inválidos");
     }
   };
-  
+
+
+  const handleFacebookLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await loginWithFacebook();
+      router.push("/");
+    } catch (error) {
+      setError("Usuario o contraseña inválidos");
+    }
+  };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   function togglePasswordVisibility() {
     setIsPasswordVisible((prevState) => !prevState);
   }
-  
+
   return (
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
         <div className="col-span-12 lg:col-span-6 py-24 px-10 lg:px-20 lg:py-10 xl:px-28">
-        <h1 className="text-4xl font-semibold mb-8">Roma Invicta</h1>
+          <h1 className="text-4xl font-semibold mb-8">Roma Invicta</h1>
           <h2 className="text-2xl font-semibold mb-8">Iniciar sesión</h2>
           <form onSubmit={handleLogin} className="align-middle align-center">
             <div>
@@ -91,7 +100,7 @@ const LoginForm = () => {
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
-                type={isPasswordVisible ? 'text' : 'password'}
+                type={isPasswordVisible ? "text" : "password"}
                 id="login-password"
                 value={loginPassword}
                 onChange={handleLoginPasswordChange}
@@ -164,9 +173,12 @@ const LoginForm = () => {
                 </span>
               </div>
             )}
-              <button className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"  data-testid="login">
-                Iniciar sesión
-              </button>
+            <button
+              className="w-full mb-4 bg-orange-primary hover:bg-orange-secondary transition duration-500 text-white px-4 py-3 rounded-lg text-lg"
+              data-testid="login"
+            >
+              Iniciar sesión
+            </button>
           </form>
 
           <button
@@ -185,6 +197,27 @@ const LoginForm = () => {
               </div>
               <div className="col-span-8">
                 <span>Iniciar sesión con Google</span>
+              </div>
+            </div>
+          </button>
+
+          {/* inicio de sesion con facebook */}
+          <button
+            className="w-full bg-white hover:bg-gray-100 transition duration-500 text-black outline outline-gray-400 outline-1 px-4 py-3 rounded-lg text-lg mb-4"
+            onClick={handleFacebookLogin}
+            data-testid="facebooklogin"
+          >
+            <div className="grid grid-cols-12">
+              <div className="col-span-2 flex justify-end">
+                <img
+                  src="/facebookLogo.svg.png"
+                  className="h-7 w-7 inline text-pink-500"
+                  width={20}
+                  alt="facebook"
+                />
+              </div>
+              <div className="col-span-8">
+                <span>Iniciar sesión con Facebook</span>
               </div>
             </div>
           </button>
