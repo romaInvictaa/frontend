@@ -9,3 +9,4 @@ export { default as TestPage } from './TestPage'
 export { default as Loader } from './Loader';
 export { default as QuestionImage } from './QuestionImage';
 export { default as ScoreCard } from './ScoreCard';
+export { default as TestFinalPage } from './TestFinalPage';

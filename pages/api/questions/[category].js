@@ -13,7 +13,7 @@ const pool = new Pool({
 export default async function getQuestionById(req, res) {
   if (req.method === 'GET') {
     const { category } = req.query;
-    const response = await pool.query('SELECT * FROM questions WHERE category = $1', [
+    const response = await pool.query('SELECT * FROM questions WHERE category = $1 ORDER BY RANDOM () LIMIT 5;', [
       category,
     ]);
     let questions = [];
@@ -23,6 +23,8 @@ export default async function getQuestionById(req, res) {
         question: question.question,
         options: [ question.option1, question.option2, question.option3, question.option4 ],
         answer: question.answer,
+        url: question.url,
+        text: question.text,
       });
     });
     res.status(200).json(questions);
@@ -34,7 +36,6 @@ export default async function getQuestionById(req, res) {
     // console.log(category, correctAnswers, user_email)
     // Insertar el usuario en la base de datos
     const query = 'UPDATE users SET ' + category + '=$1 WHERE user_email=$2';
-    console.log(query);
     const response = await pool.query(
       query, [correctAnswers, user_email]
     );

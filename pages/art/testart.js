@@ -1,76 +1,145 @@
-import { useState } from "react";
-import { Header, PageCard } from "@/components";
-import Link from "next/link";
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Header, PageCard, QuestionCard, Loader, TestFinalPage } from '@/components';
+import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext.jsx';
+
+const QUESTIONS_URL = '/api/questions';
 
 const TestArt = () => {
-  const [respuestas, setRespuestas] = useState([]);
 
-  const opciones = [
-    { id: 1, texto: "a) Entrenamiento militar" },
-    { id: 2, texto: "b) Natación" },
-    { id: 3, texto: "c) Debates políticos" },
-    { id: 4, texto: "d) Entretenimiento " },
-  ];
+  const auth = useAuth();
+  const user = auth.user;
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questions, setQuestions] = useState([]);
+
+  const [correctAnswers, setCorrectAnswers] = useState(0);
+  const [finished, setFinished] = useState(false);
 
   const handleRespuesta = (opcionId) => {
-    setRespuestas([opcionId]);
+    setSeleccionada(opcionId);
   };
+
+  const setAnswer = (answer) => {
+    if (answer) {
+      setCorrectAnswers(correctAnswers + 1);
+    }
+  };
+
+  const handleSubmit = async () => {
+    const response = await fetch(`${QUESTIONS_URL}/art`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        correctAnswers: correctAnswers,
+        user_email: user.email,
+      }),
+    });
+    const data = await response.json();
+    setFinished(true);
+  };
+
+
+  // Traer las preguntas de la base de datos
+  const getQuestions = async () => {
+    const response = await fetch(`${QUESTIONS_URL}/Art`);
+    const answer = await response.json();
+    setQuestions(answer);
+  };
+
+  // Actualizar las preguntas
+  useEffect(() => {
+    getQuestions();
+  }, []);
+
+  const nextQuestion = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
+  };
+
+  const prevQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    }
+  };
+
+
+  if (questions.length === 0)
+    return (
+      <Loader />
+    );
+
+  // console.log(questions);
+
+  const customLeftArrow = (
+    <div className="grid grid-cols-3  arrow-btn px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      <span className="text-cream-primary col-span-2">Anterior</span>
+    </div>
+  );
+
+  const customRightArrow = (
+    <div className="grid grid-cols-3 arrow-btn px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
+      <span className="text-cream-primary col-span-2">Siguiente</span>
+      <svg xmlns="http://www.w3.org/2000/svg" className="col-span-1 ml-2 h-6 w-6 text-white w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+      </svg>
+    </div>
+  );
+
+  const submitButton = (
+    <div className="px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
+      <span
+        className="text-cream-primary col-span-2"
+        onClick={() => handleSubmit()}
+      >
+        Terminar
+      </span>
+    </div>
+  );
 
   return (
     <>
-      <Header slug={"/history"} />
+      <Header slug={'/architecture'} />
       <div className="flex items-center justify-center mt-8">
         <div
-          className="group shadow-xl rounded-3xl mb-6 bg-cream-primary transition duration-500 hover:scale-105 cursor-pointer 
-          bg-gradient-to-r from-transparent via-light-gray to-transparent 
-          relative hover:before:absolute hover:before:inset-0 hover:before:-translate-x-full hover:before:animate-[shimmer_1s] hover:before:bg-gradient-to-r hover:before:from-transparent hover:before:via-light-gray/25 hover:before:to-transparent 
-          isolate overflow-hidden shadow-xl shadow-black/5 before:border-t before:border-light-gray/25"
+          className="group shadow-xl rounded-3xl pb-6 bg-cream-primary w-11/12 md:w-3/4 xl:w-7/12"
         >
-          <div className="container mx-auto">
-            <h1 className="text-3xl mx-8 mt-8 font-semibold text-dark-slate-blue flex justify-center xl:text-xl xl:mb-2">
-              Cual era el propósito principal del Coliseo Romano?
-            </h1>
-
-            <div className="col-span-2 ml-12">
-              <img
-                className="rounded-xl"
-                src={"/carrusel/mosaico.jpg"}
-                width={500}
-              />
+          {finished ? (
+            <div>
+              <TestFinalPage correctAnswers={correctAnswers} />
             </div>
-            <div className="flex flex-col mx-8 mb-6 mt-2">
-              {opciones.map((opcion) => (
-                 <label
-                 key={opcion.id}
-                 className="group shadow-xl rounded-3xl mb-2 py-4 px-2 bg-white transition duration-500 hover:scale-105 cursor-pointer 
-                           bg-gradient-to-r from-transparent via-light-gray to-transparent 
-                           relative hover:before:absolute hover:before:inset-0 hover:before:-translate-x-full hover:before:animate-[shimmer_1s] hover:before:bg-gradient-to-r hover:before:from-transparent hover:before:via-light-gray/25 hover:before:to-transparent 
-                           isolate overflow-hidden shadow-xl shadow-black/5 before:border-t before:border-light-gray/25"
-               >
-                 <input
-                   type="radio" // Cambiar el tipo de checkbox a radio
-                   className="form-radio h-3 w-5 text-blue-500"
-                   checked={opcion.id === respuestas[0]} // Comprobar si la opción es igual a la opción seleccionada
-                   onChange={() => handleRespuesta(opcion.id)}
-                 />
-                 <span className="ml-2 text-lg">{opcion.texto}</span>
-               </label>
+          ) : (
+            <>
+              {questions.map((question, index) => (
+                <div
+                  key={index}
+                  className=''
+                  style={{ display: index === currentQuestion ? "block" : "none" }}
+                >
+                  <QuestionCard question={question} setAnswer={setAnswer} />
+                  <div className='w-1/3  text-center mx-auto text-4xl font-semibold text-dark-slate-blue translate-y-10'>
+                    {currentQuestion + 1} / {questions.length}
+                  </div>
+                </div>
               ))}
-            </div>
 
-            <div className="flex justify-between items-center mb-8 ml-3 mr-8 ">
-              <Link href="/">
-                <span className="md:float-left  mt-2 align-middle text-cream-primary ml-4 font-semibold cursor-pointer bg-dark-slate-blue border border-dark-slate-blue rounded-full px-8 py-2 transition duration-300 hover:bg-cream-primary hover:text-dark-slate-blue hover:border-cream-primary">
-                  Siguiente Pregunta
-                </span>
-              </Link>
-              <Link href="/">
-                <span className="md:float-left  mt-2 align-middle text-cream-primary ml-4 font-semibold cursor-pointer bg-dark-slate-blue border border-dark-slate-blue rounded-full px-8 py-2 transition duration-300 hover:bg-cream-primary hover:text-dark-slate-blue hover:border-cream-primary">
-                  Enviar
-                </span>
-              </Link>
-            </div>
-          </div>
+              <div className='mb-16'>
+                <div className='float-left mx-12' onClick={prevQuestion}>
+                  {currentQuestion === 0 ? null : customLeftArrow}
+                </div>
+                <div className='float-right mx-12' onClick={nextQuestion}>
+                  {currentQuestion === questions.length - 1 ? submitButton : customRightArrow}
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
