@@ -49,13 +49,13 @@ const pages = [
     name: "Romulo y Remo",
     description: "Descubre la historia de Romulo y Remo",
     image: "/carrusel/romulo.jpg",
-    slug: "/art/romulo",
+    slug: "/history/romulo",
   },
   {
     name: "Ruinas de pompeya",
     description: "Descubre la historia de las Ruinas de Pompeya",
     image: "/carrusel/ruinas.jpg",
-    slug: "/art/ruinas",
+    slug: "/history/ruinaspompeya",
   },
 ];
 

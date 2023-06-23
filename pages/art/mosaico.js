@@ -13,7 +13,7 @@ const Mosaico = () => {
 
   return (
     <>
-      <Header slug={"/history"}/>
+      <Header slug={"/art"}/>
       <div className="container mx-auto px-6 md:px-0">
         <div className="grid grid-cols-1">
           <div className="flex justify-center py-2">
