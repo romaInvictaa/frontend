@@ -16,17 +16,17 @@ const TestFinalPage = ({ correctAnswers }) => {
         <>
             <div className="flex items-center justify-center mt-8">
                 <div className="grid grid-cols-12">
-                    <div className='col-span-12 mb-8'>
-                        <h1 className='text-3xl text-center font-bold text-dark-slate-blue col-span-2'>¡Has acertado {correctAnswers} preguntas!</h1>  
+                    <div className='col-span-12 mb-8 px-2'>
+                        <h1 className='text-2xl md:text-3xl text-center font-bold text-dark-slate-blue col-span-2'>¡Has acertado {correctAnswers} preguntas!</h1>  
                     </div>
                     
-                    <div className="col-span-6 mx-12 h-full pt-auto">
-                        <Image className="rounded-3xl" src={correctAnswers > 3 ? "/romanoVictoria.png" : "/emperador.jpg"} width={500} height={500} />
+                    <div className="col-span-12 md:col-span-6 mx-8 xl:mx-12 h-full pt-auto">
+                        <Image className="rounded-3xl md:mt-12 lg:mt-0" src={correctAnswers > 3 ? "/romanoVictoria.png" : "/emperador.jpg"} width={500} height={500} />
                     </div>
-                    <div className="col-span-6 mr-8 mb-6 mt-2">
+                    <div className="col-span-12 md:col-span-6 mx-8 md:mr-8 mb-6 mt-2">
 
                         <h1 className='text-3xl font-semibold text-center text-dark-slate-blue col-span-2 mb-8 pt-4'>{texts[correctAnswers].title}</h1>
-                        <span className="text-2xl text-dark-slate-blue flex text-center col-span-2">{texts[correctAnswers].text}</span>
+                        <span className="text-lg lg:text-2xl text-dark-slate-blue flex text-center col-span-2 ">{texts[correctAnswers].text}</span>
                     </div>
                 </div>
             </div>

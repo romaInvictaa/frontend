@@ -40,12 +40,12 @@ const QuestionCard = ({ question, setAnswer, marked }) => {
                 {question.question}
             </h1>
             <div className="grid grid-cols-12">
-                <div className="col-span-8 mx-12 h-full pt-auto">
+                <div className="col-span-12 md:col-span-8 mx-12 h-full pt-auto mb-8 md:mb-0">
                     <QuestionImage image={{ url: question.url, answered: answered, text: question.text }} />
                     {/* <div className="bg-white w-1/2">1</div> */}
                 </div>
 
-                <div className="col-span-4 flex flex-col mr-8 mb-6 mt-2">
+                <div className="col-span-12 md:col-span-4 ml-8 md:ml-0 flex flex-col mr-8 mb-6 mt-2">
                     {question.options.map((option, index) => (
                         selectedOption === index ? (
                             <div
@@ -77,7 +77,7 @@ const QuestionCard = ({ question, setAnswer, marked }) => {
                         )
                     ))}
 
-                    <div className="flex justify-center mb-2 ml-3 mr-8">
+                    <div className="flex justify-center mb-2 md:ml-3 md:mr-8">
                         <span
                             onClick={() => handleSubmit()}
                             className="md:float-right mt-4 align-middle text-cream-primary text-xl font-semibold cursor-pointer bg-dark-slate-blue border border-dark-slate-blue rounded-full px-8 py-2 transition duration-300 hover:bg-cream-primary hover:text-dark-slate-blue hover:border-cream-primary"

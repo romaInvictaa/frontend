@@ -76,27 +76,27 @@ const TestArchitecture = () => {
   // console.log(questions);
 
   const customLeftArrow = (
-    <div className="grid grid-cols-3  arrow-btn px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div className="grid grid-cols-3 arrow-btn px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white w-full col-span-3 md:col-span-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
-      <span className="text-cream-primary col-span-2">Anterior</span>
+      <span className="text-cream-primary md:col-span-2 hidden md:inline">Anterior</span>
     </div>
   );
 
   const customRightArrow = (
     <div className="grid grid-cols-3 arrow-btn px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
-      <span className="text-cream-primary col-span-2">Siguiente</span>
-      <svg xmlns="http://www.w3.org/2000/svg" className="col-span-1 ml-2 h-6 w-6 text-white w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <span className="text-cream-primary md:col-span-2 hidden md:inline">Siguiente</span>
+      <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-6 w-6 text-white w-full col-span-3 md:col-span-1 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
       </svg>
     </div>
   );
 
   const submitButton = (
-    <div className="px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
+    <div className="px-4 md:px-8 text-center py-3 cursor-pointer bg-dark-slate-blue rounded-full">
       <span
-        className="text-cream-primary col-span-2"
+        className="text-cream-primary text-sm md:text-md"
         onClick={() => handleSubmit()}
       >
         Terminar
@@ -107,7 +107,7 @@ const TestArchitecture = () => {
   return (
     <>
       <Header slug={'/architecture'} />
-      <div className="flex items-center justify-center mt-8">
+      <div className="flex items-center justify-center my-8">
         <div
           className="group shadow-xl rounded-3xl pb-6 bg-cream-primary w-11/12 md:w-3/4 xl:w-7/12"
         >
@@ -124,17 +124,17 @@ const TestArchitecture = () => {
                   style={{ display: index === currentQuestion ? "block" : "none" }}
                 >
                   <QuestionCard question={question} setAnswer={setAnswer} />
-                  <div className='w-1/3  text-center mx-auto text-4xl font-semibold text-dark-slate-blue translate-y-10'>
+                  <div className='w-1/3  text-center mx-auto text-4xl font-semibold text-dark-slate-blue mb-4 md:mb-0 md:translate-y-10'>
                     {currentQuestion + 1} / {questions.length}
                   </div>
                 </div>
               ))}
 
               <div className='mb-16'>
-                <div className='float-left mx-12' onClick={prevQuestion}>
+                <div className='float-left mx-12 bg-black' onClick={prevQuestion}>
                   {currentQuestion === 0 ? null : customLeftArrow}
                 </div>
-                <div className='float-right mx-12' onClick={nextQuestion}>
+                <div className='float-right mx-12 bg-black' onClick={nextQuestion}>
                   {currentQuestion === questions.length - 1 ? submitButton : customRightArrow}
                 </div>
               </div>
