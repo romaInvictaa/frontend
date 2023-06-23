@@ -6,7 +6,7 @@ const categories = [
   {
     name: 'Historia',
     description: 'Sumérgete en la fascinante historia de Roma',
-    image: '/history.png',
+    image: '/arte.png',
     slug: 'history',
   },
   {
@@ -18,7 +18,7 @@ const categories = [
   {
     name: 'Arte',
     description: 'Un repaso por las grandes obras de arte de Roma',
-    image: '/arte.png',
+    image: '/history.png',
     slug: 'art',
   },
 ]

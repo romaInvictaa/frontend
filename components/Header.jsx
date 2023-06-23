@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAuth } from '../context/AuthContext.jsx';
 import { AccountCard } from "./";
+import Router from "next/router.js";
 
 const REGISTER_URL = "/api/usermail";
 
@@ -54,9 +55,11 @@ const Header = ({ slug }) => {
     }, [auth.user.displayName]);
 
 
+
     const handleLogout = (e) => {
         e.preventDefault();
         auth.logout();
+        Router.push("/login");
     };
 
     return (
@@ -152,18 +155,18 @@ const Header = ({ slug }) => {
                 user ? (
                     <div className="md:hidden bg-dark-slate-blue pb-4 mb-4">
                         <div className="flex justify-center">
-                            <Link href="/login">
+                            <Link href="/profile">
                                 <span className="text-light-gray font-semibold text-2xl cursor-pointer hover:text-cream-primary transition duration-300">
                                     Perfil
                                 </span>
                             </Link>
                         </div>
                         <div className="flex justify-center mt-4">
-                            <Link href="/register">
+                            <div onClick={handleLogout}>
                                 <span className="text-light-gray font-semibold text-2xl cursor-pointer hover:text-cream-primary transition duration-300">
                                     Cerrar sesión
                                 </span>
-                            </Link>
+                            </div>
                         </div>
                         
                     </div>

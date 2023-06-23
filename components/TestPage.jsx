@@ -9,7 +9,6 @@ const TestPage = () => {
 
   const auth = useAuth();
   const user = auth.user;
-  console.log(user);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [questions, setQuestions] = useState([]);

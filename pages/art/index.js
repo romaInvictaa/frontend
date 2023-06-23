@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAuth } from '../../context/AuthContext.jsx';
 
 
-const History = () => {
+const Art = () => {
   const auth = useAuth();
   const user = auth.user;
   return (
@@ -15,13 +15,13 @@ const History = () => {
           {/* <div className="ml-64">
                         <span className='text-md lg:text-xl text-orange-primary font-semibold'>TE PRESENTAMOS</span>
                     </div> */}
-          <div className="flex justify-center py-2">
+          <div className="flex justify-center py-2" data-testid="title">
             <span className="text-5xl md:text-4xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue">
               Tesoros de la antigua Roma
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-2 w-full">
+        <div className="grid grid-cols-2 w-full" data-testid="cards">
           {pages.map((page, index) => (
             <div
               className="col-span-2 md:row-span-1 md:col-span-1 sm:px-6"
@@ -63,4 +63,4 @@ const pages = [
   },
 ];
 
-export default History;
+export default Art;

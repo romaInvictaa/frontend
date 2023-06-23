@@ -7,7 +7,7 @@ const Coliseum = () => {
     fov: 80,
     aspect: 2,
     near: 0.1,
-    far: 400,
+    far: 100,
     position: [2, 15, 25],
   };
 

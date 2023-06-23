@@ -2,9 +2,11 @@ import React from "react";
 
 const QuestionImage = ({ image }) => {
 
+    console.log(image);
+
     return (
         <div className="relative h-96">
-            <div className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-96" style={{ backgroundImage: `url('${image.slug}')` }} />
+            <div className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-96" style={{ backgroundImage: `url('${image.url}')` }} />
 
             {image.answered && (
                 <>

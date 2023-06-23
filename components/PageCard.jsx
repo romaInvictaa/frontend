@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 const PageCard = ({ page }) => {
+    
     return (
         <Link href={`${page.slug}`} data-testid={page.name}>
             <div className='group shadow-xl rounded-3xl mb-6 bg-cream-primary transition duration-500 hover:scale-105 cursor-pointer 

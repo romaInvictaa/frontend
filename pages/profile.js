@@ -32,25 +32,25 @@ const Profile = () => {
             <div className="container mx-auto px-6 md:px-0">
                 <div className="grid grid-cols-1">
                     <div className="flex justify-center py-6">
-                        <span className="text-5xl md:text-4xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue">
+                        <span className="text-4xl md:text-4xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue">
                             Perfil de usuario
                         </span>
                     </div>
 
                     <div className="grid grid-cols-3 w-full rounded-3xl bg-cream-primary">
-                        <div className="col-span-1 py-24 px-4">
+                        <div className="col-span-3 md:col-span-1 py-8 md:py-24 px-4 flex justify-center">
                             <Image
                                 src={user.photoURL ? user.photoURL : "/profileIcon.png"}
-                                className="border border-8 border-dark-slate-blue align-middle mx-6 font-semibold rounded-full my-2"
+                                className="border border-8 w-1/2 h-full md:h-1/2 lg:h-full md:w-full border-dark-slate-blue align-middle mx-6 font-semibold rounded-full my-2"
                                 alt="profile"
                                 width={300}
                                 height={300}
                             />
                         </div>
-                        <div className="col-span-2 py-12">
-                            <div className="flex justify-center pt-2 px-4">
-                                <span className="text-lg md:text-lg lg:text-3xl font-semibold text-dark-slate-blue">
-                                    {user.displayName}
+                        <div className="col-span-3 md:col-span-2 md:py-12">
+                            <div className="flex justify-center items-center justify-items-center pt-2 px-4">
+                                <span className="text-3xl md:text-lg lg:text-3xl font-semibold text-dark-slate-blue flex justify-center items-center justify-items-center justify-self-center">
+                                    <center>{user.displayName}</center>
                                 </span>
                             </div>
                             <div className="flex justify-center px-4 mb-8">
@@ -66,9 +66,9 @@ const Profile = () => {
                             </div>
 
                             <div className="grid grid-cols-3">
-                                <div className="col-span-1"><ScoreCard correctAnswers={scores.history} section={'Historia'}/></div>
-                                <div className="col-span-1"><ScoreCard correctAnswers={scores.architecture} section={'Arquitectura'}/></div>
-                                <div className="col-span-1"><ScoreCard correctAnswers={scores.art} section={'Arte'}/></div>
+                                <div className="col-span-3 md:col-span-1 mb-8"><ScoreCard correctAnswers={scores.history} section={'Historia'}/></div>
+                                <div className="col-span-3 md:col-span-1 mb-8"><ScoreCard correctAnswers={scores.architecture} section={'Arquitectura'}/></div>
+                                <div className="col-span-3 md:col-span-1 mb-8"><ScoreCard correctAnswers={scores.art} section={'Arte'}/></div>
                             </div>
                         </div>
                     </div>
