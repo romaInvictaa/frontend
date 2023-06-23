@@ -41,7 +41,7 @@ const Profile = () => {
                         <div className="col-span-3 md:col-span-1 py-8 md:py-24 px-4 flex justify-center">
                             <Image
                                 src={user.photoURL ? user.photoURL : "/profileIcon.png"}
-                                className="border border-8 w-1/2 md:w-full border-dark-slate-blue align-middle mx-6 font-semibold rounded-full my-2"
+                                className="border border-8 w-1/2 h-full md:h-1/2 lg:h-full md:w-full border-dark-slate-blue align-middle mx-6 font-semibold rounded-full my-2"
                                 alt="profile"
                                 width={300}
                                 height={300}

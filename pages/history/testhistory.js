@@ -28,7 +28,7 @@ const TestArchitecture = () => {
   };
 
   const handleSubmit = async () => {
-    const response = await fetch(`${QUESTIONS_URL}/architecture`, {
+    const response = await fetch(`${QUESTIONS_URL}/history`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ const TestArchitecture = () => {
 
   // Traer las preguntas de la base de datos
   const getQuestions = async () => {
-    const response = await fetch(`${QUESTIONS_URL}/Arquitectura`);
+    const response = await fetch(`${QUESTIONS_URL}/history`);
     const answer = await response.json();
     setQuestions(answer);
   };
@@ -106,7 +106,7 @@ const TestArchitecture = () => {
 
   return (
     <>
-      <Header slug={'/architecture'} />
+      <Header slug={'/history'} />
       <div className="flex items-center justify-center my-8">
         <div
           className="group shadow-xl rounded-3xl pb-6 bg-cream-primary w-11/12 md:w-3/4 xl:w-7/12"
