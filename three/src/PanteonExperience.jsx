@@ -3,22 +3,31 @@ import { useTexture } from "@react-three/drei";
 import { DoubleSide } from "three";
 import Video from './Video'
 import {  Panteon } from './Panteon'
-import {  Arena } from './Arena'
 
 const PATH = "/textures/coral/"
 
 export default function PanteonExperience() {
     
     return <>
-        <OrbitControls makeDefault />
+        <OrbitControls 
+        makeDefault
+        enablePan={false}
+        maxPolarAngle={Math.PI / 2}
+        target={[0, 4, 0]}
+        />
+
         <spotLight  castShadow position={[10, 15, 30]} intensity={1.5} />
         <ambientLight intensity={0.5} />
 
-        <mesh position={[-1.5, 2, 1]} >
+        <mesh position={[0, 0, 0]} >
         {/* <Video />  */}
         
-        <Panteon position={[0,1,0]}/>
-        <Arena />
+        <Panteon 
+        position={[0,0,0]}
+        rotation={[0,Math.PI/5,0]}
+
+        />
+        {/* <Arena /> */}
 
         
          {/*<Float speed={6}>

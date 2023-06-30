@@ -4,12 +4,15 @@ import { Header, InfoCard, ImageCarousel } from '@/components';
 
 const Pantheon = () => {
   const cameraSettings = {
-    fov: 90,
-    aspect: 2,
-    near: 0.1,
-    far: 400,
-    position: [-2, 18, 30],
+    fov: 75,
+    // aspect: 2,
+    // near: 0.1,
+    // far: 400,
+    position: [0, 5, 15],
+
   };
+ 
+
 
   return (
     <>
