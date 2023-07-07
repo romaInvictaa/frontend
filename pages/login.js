@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext.jsx";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../context/AuthContext.jsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const REGISTER_URL = "/api/users/";
+const REGISTER_URL = '/api/users/';
 
 const LoginForm = () => {
   const auth = useAuth();
@@ -22,8 +22,8 @@ const LoginForm = () => {
   }, [auth.user]);
 
   const { login, loginWithGoogle, loginWithFacebook } = useAuth();
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
 
   const router = useRouter();
 
@@ -39,9 +39,9 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await login(loginEmail, loginPassword);
-      router.push("/");
+      router.push('/');
     } catch (error) {
-      setError("Usuario o contraseña inválidos");
+      setError('Usuario o contraseña inválidos');
     }
   };
 
@@ -49,20 +49,19 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       await loginWithGoogle();
-      router.push("/");
+      router.push('/');
     } catch (error) {
-      setError("Usuario o contraseña inválidos");
+      setError('Usuario o contraseña inválidos');
     }
   };
-
 
   const handleFacebookLogin = async (e) => {
     e.preventDefault();
     try {
       await loginWithFacebook();
-      router.push("/");
+      router.push('/');
     } catch (error) {
-      setError("Usuario o contraseña inválidos");
+      setError('Usuario o contraseña inválidos');
     }
   };
 
@@ -100,7 +99,7 @@ const LoginForm = () => {
               <input
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisible ? 'text' : 'password'}
                 id="login-password"
                 value={loginPassword}
                 onChange={handleLoginPasswordChange}
@@ -222,6 +221,13 @@ const LoginForm = () => {
             </div>
           </button>
 
+          <div className="text-2xl mt-2 mb-2 flex justify-center">
+            <Link href="/">
+              <span className="text-orange-primary hover:underline">
+                Ingresar sin cuenta
+              </span>
+            </Link>
+          </div>
           <div className="mt-2 mb-2 flex justify-center">
             <Link href="/recover">
               <span className="text-orange-primary hover:underline">
