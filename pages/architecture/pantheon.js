@@ -31,7 +31,7 @@ const Pantheon = () => {
             </Canvas>
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
-            <InfoCard text={text}/>
+            <InfoCard texts={text}/>
             <ImageCarousel images={images}/>
           </div>
       </div>
@@ -42,5 +42,8 @@ const Pantheon = () => {
 
 export default Pantheon;
 
-const text = "Un antiguo templo romano. Fue terminado por orden del emperador Adriano y dedicado alrededor del año 126. Su fecha de construcción es incierta porque Adriano optó por no inscribir el nuevo templo, sino que conservó la inscripción del templo más antiguo que se había quemado."
+const text = ["Un antiguo templo romano. Fue terminado por orden del emperador Adriano y dedicado alrededor del año 126. Su fecha de construcción es incierta porque Adriano optó por no inscribir el nuevo templo, sino que conservó la inscripción del templo más antiguo que se había quemado",,
+"El panteón romano cuyo nombre procede del griego Pántheion (en griego: Πάνθειον), que significa «templo de todos los dioses». Se construyó con la finalidad de adorar y hacer culto a todos los dioses romanos",
+"Su construcción se inició en el siglo I d.C por órdenes del emperador Marco y la principal característica arquitectónica del Panteón es una gran cúpula de hormigón con óculo central la cual tiene un diámetro de 30 metros"
+];
 const images = ["/pantheon/pantheon1.png", "/pantheon/pantheon2.png", "/pantheon/pantheon3.png", "/pantheon/pantheon4.png", "/pantheon/pantheon5.png"];

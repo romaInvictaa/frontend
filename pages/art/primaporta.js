@@ -8,7 +8,7 @@ const Primaporta = () => {
     aspect: 2,
     near: 0.1,
     far: 400,
-    position: [-2, 21, 20],
+    position: [-2, 20, 30],
   };
 
   return (
@@ -28,7 +28,7 @@ const Primaporta = () => {
             </Canvas>
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
-            <InfoCard text={text}/>
+            <InfoCard texts={text}/>
             <ImageCarousel images={images} />
           </div>
       </div>
@@ -39,5 +39,8 @@ const Primaporta = () => {
 
 export default Primaporta;
 
-const text = "La estatua es una imagen idealizada de Augusto que se basa en el Doríforo de Policleto del siglo V a. C. Acoge la forma de contrapposto de esa escultura, creando diagonales entre los miembros tensos y los relajados, es un rasgo típico de la escultura clásica."
+const text = ["La estatua es una imagen idealizada de Augusto que se basa en el Doríforo de Policleto del siglo V a. C. Acoge la forma de contrapposto de esa escultura, creando diagonales entre los miembros tensos y los relajados, es un rasgo típico de la escultura clásica",
+"La estatua data del año 15 d.C, tiene una altura de 2,04 m y fue realizada principalmente en mármol con restos de policromía",
+"Augusto aparece en pie, con indumentaria militar, sosteniendo un bastón de mando consular y levantando la mano derecha en señal de paz. En su pecho se aprecia una rica coraza que simboliza sus triunfos militares"
+];
 const images = ["/primaporta/primaporta1.jpg", "/primaporta/primaporta2.jpg", "/primaporta/primaporta3.jpeg", "/primaporta/primaporta4.png"];

@@ -1,27 +1,37 @@
-import { OrbitControls , Text, Float} from '@react-three/drei'
+import { OrbitControls, Text, Float } from "@react-three/drei";
 import { useTexture } from "@react-three/drei";
-import { DoubleSide } from "three";
-import Video from './Video'
-import {  Coliseo } from './Coliseo'
-import {  Land } from './Land'
-import { FloorColiseo } from './FloorColiseo'
-
-
+import {useLoader} from "@react-three/fiber"
+import { TextureLoader, DoubleSide } from "three";
+import Video from "./Video";
+import { Coliseo } from "./Coliseo";
+import { Land } from "./Land";
+import { FloorColiseo } from "./FloorColiseo";
 
 export default function Experience() {
-    
-    return <>
-        <OrbitControls makeDefault />
-        <spotLight  castShadow position={[10, 25, 30]} intensity={1.5} />
-        <ambientLight intensity={0.05} />
-        <mesh position={[-1.5, 4, 1]} >
-         <Video /> 
+  
+  return (
+    <>
+      <OrbitControls
+       makeDefault 
+       enablePan={false}
+       maxPolarAngle={Math.PI / 2.1}
+       target={[0, 4, 0]}
+       maxDistance={30}
         
-        <FloorColiseo />
-        <Coliseo position={[0, 2, 1]} scale={0.002} rotation={[-Math.PI / 2, 0, 0]}/>
-       
+      />
+      <spotLight castShadow position={[10, 25, 30]} intensity={1.5} />
+      <ambientLight intensity={0.05} />
+      <mesh position={[-1.5, 4, 1]}>
+        <Video />
 
-        
+        <FloorColiseo />
+        <Coliseo
+          position={[0, 2, 1]}
+          scale={0.002}
+          rotation={[-Math.PI / 2, 0, 0]}
+        />
+
+
         {/*<Float speed={6}>
         <Text
             fontSize={2}
@@ -35,8 +45,7 @@ export default function Experience() {
             COLISEO ROMANO
         </Text>
 </Float> */}
-        </mesh>
-    
-    
+      </mesh>
     </>
+  );
 }
