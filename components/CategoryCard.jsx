@@ -4,18 +4,15 @@ import Link from 'next/link';
 const CategoryCard = ({ category }) => {
     return (
         <Link href={`/${category.slug}`} data-testid={category.name}>
-            <div className='shadow-xl rounded-lg px-8 py-6 mb-6 bg-cream-primary transition duration-500 hover:bg-cream-secondary hover:-translate-y-2 cursor-pointer'>
-                <div className='grid grid-cols-3 gap-2'>
-                    <div className='col-span-1'>
-                        <img
-                            className='xl:ml-4' 
-                            src={category.image}
-                            alt={category.name}
-                            width={80}
-                            height={80} />
-                        
-                    </div>
-                    <div className='col-span-2 px-2'>
+            <div className='shadow-xl rounded-lg mb-6 bg-cream-primary transition duration-500 hover:bg-cream-secondary hover:-translate-y-2 cursor-pointer'>
+                <div className='flex'>
+                    <img
+                        className='object-cover rounded-t-lg lg:rounded-lg w-1/3'
+                        src={category.image}
+                        alt={category.name}
+                    />
+
+                    <div className='py-6 px-2'>
                         <h3 className="text-lg font-semibold text-dark-slate-blue flex justify-center xl:text-xl xl:mb-2">
                             {category.name}
                         </h3>

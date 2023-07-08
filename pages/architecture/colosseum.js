@@ -17,7 +17,7 @@ const Coliseum = () => {
       <div className="container mx-auto px-6 md:px-0">
         <div className="grid grid-cols-1">
           <div className="flex justify-center py-2">
-            <span className='text-5xl md:text-5xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue py-2'>El Gran Coliseo Romano</span>
+            <span className='text-4xl md:text-5xl lg:text-5xl font-semibold mb-4 text-dark-slate-blue py-2'>El Gran Coliseo Romano</span>
           </div>
         </div>
 

@@ -1,7 +1,8 @@
 import React from "react";
-import { Header, PageCard } from "@/components";
+import { Header, PageCard, TestCard } from "@/components";
 import Link from "next/link";
 import { useAuth } from '../../context/AuthContext.jsx';
+import Image from "next/image";
 
 
 const Art = () => {
@@ -32,15 +33,24 @@ const Art = () => {
           ))}
         </div>
         {user ? (
-        <div className="flex justify-center col-span-2 ">
-          <Link href="/art/testart">
-            <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-8 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
-              Test
-            </span>
-          </Link>
-        </div>
+          <TestCard href={"/art/testart"}/>
         ) : (
-          <div className="flex justify-center col-span-2 ">
+          <div className="flex justify-center">
+          <div className='px-4 py-2 shadow-xl rounded-lg mb-6 bg-cream-primary md:w-1/2 lg:w-1/3'>
+                    <div className='flex'>
+                        <Image
+                            src={'/cesar.png'}
+                            height={100}
+                            width={115}
+                        />
+
+                        <div className='py-6 px-2'>
+                            <h3 className="text-lg font-semibold text-dark-slate-blue flex justify-center">
+                               Inicia sesión para realizar la prueba de conocimiento
+                            </h3>
+                        </div>
+                    </div>
+                </div>
           </div>
         )}
       </div>
