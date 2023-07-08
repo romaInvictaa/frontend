@@ -10,13 +10,13 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  FacebookAuthProvider,
 } from "firebase/auth";
 
 // restablecimiento de contraseña
 const resetPassword = async (email) => {
   await sendPasswordResetEmail(auth, email);
 };
-
 
 export const AuthContext = createContext();
 //console.log("AuthContext", AuthContext);
@@ -79,31 +79,43 @@ export function AuthProvider({ children }) {
     // return await signInWithPopup(auth, responseGoogle);
     const xd = await signInWithPopup(auth, responseGoogle);
     console.log(xd);
-    registerUser(xd.user.displayName,xd.user.email);
+    registerUser(xd.user.displayName, xd.user.email);
     return xd;
   };
 
+  // inicio de sesion con facebook
+  const loginWithFacebook = async () => {
+    // login abre en otra pestaña
+    const responseFacebook = new FacebookAuthProvider();
+    try {
+      const xd = await signInWithPopup(auth, responseFacebook);
+      console.log(xd);
+      registerUser(xd.user.displayName, xd.user.email);
+      return xd;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
- // traer usuario de google y enviarlo a la base de datos
-  const registerUser = async (displayName,email) => {
+  // traer usuario de google y enviarlo a la base de datos
+  const registerUser = async (displayName, email) => {
     //console.log("nombre", displayName,"email", email);
     const response = await fetch("/api/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         user_name: displayName,
         user_email: email,
         history: "0",
-        art: "0",	
+        art: "0",
         architecture: "0",
       }),
     });
     const data = await response.json();
     console.log(data);
   };
-
 
   // cerrar sesion
   const logout = async () => {
@@ -114,7 +126,15 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ register, login, loginWithGoogle, resetPassword, logout, user }}
+      value={{
+        register,
+        login,
+        loginWithGoogle,
+        resetPassword,
+        loginWithFacebook,
+        logout,
+        user,
+      }}
     >
       {children}
     </AuthContext.Provider>
