@@ -28,7 +28,7 @@ const RuinasPompeya = () => {
             </Canvas>
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
-            <InfoCard text={text}/>
+            <InfoCard texts={text}/>
             <ImageCarousel images={images} />
           </div>
       </div>
@@ -39,5 +39,10 @@ const RuinasPompeya = () => {
 
 export default RuinasPompeya;
 
-const text = "Sus orígenes no se conocen bien. Se supone que fue una fundación osca, pueblo que ocupó la región de Campania tras la colonización griega del sur de la costa tirrena en los siglos VIII y VII a. C. "
+const text = ["Sus orígenes no se conocen bien. Se supone que fue una fundación osca, pueblo que ocupó la región de Campania tras la colonización griega del sur de la costa tirrena en los siglos VIII y VII a. C. ",
+"En el año 79 a.C. un volcán del tipo estratovolcán llamado Monte Vesubio, el cual se encuentra ubicado cerca a la ciudad italiana de Nápoles entró en erupción",
+"En dicha erupción fueron sepultados varios núcleos urbanos, entre ellos las ciudades de Pompeya y parte de Herculano",
+"El volcán arrojó enormes cantidades de material piroclástico y los habitantes de la ciudad de Pompeya quedaron sepultados",
+"La erupción volcánica que sepultó Pompeya tuvo un efecto sorprendente: actuó como un conservante natural, congelando en el tiempo la vida cotidiana de los habitantes de la ciudad para toda la eternidad",
+"Elementos como frescos, mosaicos, joyas, esculturas, elementos de cocina y demás artilugios empleados en el día a día por los habitantes de Pompeya quedaron cubiertos por ceniza y se conservaron"];
 const images = ["/ruinas/ruinas1.jpg", "/ruinas/ruinas2.jpg", "/ruinas/ruinas3.jpg", "/ruinas/ruinas4.jpg"];
