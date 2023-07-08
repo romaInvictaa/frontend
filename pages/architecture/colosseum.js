@@ -19,7 +19,11 @@ const Coliseum = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <Header slug={"/architecture"} />
+=======
+      <Header slug={'/architecture'} />
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
       <div className="container mx-auto px-6 md:px-0">
         <div className="grid grid-cols-1">
           <div className="flex justify-center py-2">
@@ -36,12 +40,16 @@ const Coliseum = () => {
               shadows={true}
               className="rounded-2xl"
             >
+<<<<<<< HEAD
              
             
 
             <Experience />
    
    
+=======
+              <Experience />
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
             </Canvas>
           </div>
           <div className="col-span-6 md:col-span-2 sm:px-6">
@@ -57,6 +65,7 @@ const Coliseum = () => {
 export default Coliseum;
 
 const text = [
+<<<<<<< HEAD
   "El Coliseo es testigo de batallas épicas donde la gloria y el honor se disputaban bajo el rugido de los leones, las espadas chocaban y los corazones latían al unísono. ¡Ven y descubre los secretos de este coloso de la historia!",
   "En el Coliseo tenían lugar luchas de gladiadores y espectáculos públicos. Se construyó justo al este del Foro Romano, y las obras empezaron entre 70 d. C. y 72 d. C. Esto con la finalidad de entretener a las diferentes clases sociales del pueblo romano",
 ];
@@ -65,4 +74,14 @@ const images = [
   "/colosseum/colosseum2.png",
   "/colosseum/colosseum3.png",
   "/colosseum/colosseum4.png",
+=======
+  'El Coliseo es testigo de batallas épicas donde la gloria y el honor se disputaban bajo el rugido de los leones, las espadas chocaban y los corazones latían al unísono. ¡Ven y descubre los secretos de este coloso de la historia!',
+  'En el Coliseo tenían lugar luchas de gladiadores y espectáculos públicos. Se construyó justo al este del Foro Romano, y las obras empezaron entre 70 d. C. y 72 d. C. Esto con la finalidad de entretener a las diferentes clases sociales del pueblo romano',
+];
+const images = [
+  '/colosseum/colosseum1.png',
+  '/colosseum/colosseum2.png',
+  '/colosseum/colosseum3.png',
+  '/colosseum/colosseum4.png',
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
 ];

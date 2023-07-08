@@ -1,11 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useVideoTexture, OrbitControls, useThree } from "@react-three/drei";
+import React, { useRef, useState, useEffect } from 'react';
+import { useVideoTexture, OrbitControls, useThree } from '@react-three/drei';
 import { Html } from '@react-three/drei';
+<<<<<<< HEAD
 import { useFrame, useLoader } from "react-three-fiber";
 import { VideoTexture, DoubleSide ,  TextureLoader} from 'three';
+=======
+import { useFrame, useLoader } from 'react-three-fiber';
+import { VideoTexture, DoubleSide } from 'three';
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
 import { Romulo } from './Romulo';
 import { FloorColiseo } from './FloorColiseo';
-
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
@@ -34,21 +38,21 @@ const VideoPlayer = () => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.code === "KeyP") {
+      if (event.code === 'KeyP') {
         playVideo();
-      } else if (event.code === "Space") {
+      } else if (event.code === 'Space') {
         pauseVideo();
-      } else if (event.code === "KeyR") {
+      } else if (event.code === 'KeyR') {
         rewindVideo();
-      } else if (event.code === "KeyS") {
+      } else if (event.code === 'KeyS') {
         stopVideo();
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -72,12 +76,26 @@ const VideoPlayer = () => {
   return (
     <>
       <Html>
-        <video ref={videoRef} src="/video/romulo.mp4" style={{ display: 'none' }} />
+        <video
+          ref={videoRef}
+          src="/video/romulo.mp4"
+          style={{ display: 'none' }}
+        />
       </Html>
+<<<<<<< HEAD
       <mesh position={[0, 1, -5]}   onClick={playVideo} onDoubleClick={pauseVideo}>
         <boxGeometry args={[60, 30, 0.1]}   />
         <meshStandardMaterial map={videoTexture1} side={DoubleSide}  />
         
+=======
+      <mesh
+        position={[0, 1, -5]}
+        onClick={playVideo}
+        onDoubleClick={pauseVideo}
+      >
+        <boxGeometry args={[60, 30, 0.1]} />
+        <meshStandardMaterial map={videoTexture1} side={DoubleSide} />
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
       </mesh>
 
     </>
@@ -87,8 +105,11 @@ const VideoPlayer = () => {
 export default function RomuloExperience() {
   const notaRef = useRef();
   const [showNota, setShowNota] = useState(false);
+<<<<<<< HEAD
   const [texture] = useLoader(TextureLoader, ["/sonido.png"]);
  
+=======
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
 
   const handleClick = () => {
     setShowNota(true);
@@ -100,16 +121,23 @@ export default function RomuloExperience() {
 
   return (
     <>
-      <OrbitControls 
+      <OrbitControls
         makeDefault
         enablePan={false}
         maxPolarAngle={Math.PI / 2}
         target={[0, 4, 0]}
         maxDistance={35}
       />
+      <Html style={{ textAlign: 'right' }}>
+        <img
+          src="/clickicon.png"
+          style={{ marginLeft: '300px', marginTop: '85px' }}
+        ></img>
+      </Html>
 
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />
       <ambientLight intensity={0.5} />
+<<<<<<< HEAD
 
       <mesh position={[-1.5, 0, 1]} onBeforeRender ={handleClick} >
 
@@ -118,15 +146,23 @@ export default function RomuloExperience() {
         <meshStandardMaterial map={texture} transparent={true} />
       </mesh>
         <Romulo  position={[0, 2.1, 10]} scale={0.3} rotation={[-Math.PI / 7, -Math.PI / 10, 0]} />
+=======
+      <mesh position={[-1.5, 0, 1]}>
+        <Romulo
+          onClick={handleClick}
+          onDoubleClick={handleClick1}
+          position={[0, 2.1, 10]}
+          scale={0.3}
+          rotation={[-Math.PI / 7, -Math.PI / 10, 0]}
+        />
+>>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
         <FloorColiseo />
         {showNota && (
-          <mesh ref={notaRef} position={[0, 20, -10]} >
+          <mesh ref={notaRef} position={[0, 20, -10]}>
             <VideoPlayer />
           </mesh>
         )}
       </mesh>
-
-      
     </>
   );
 }

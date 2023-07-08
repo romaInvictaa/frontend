@@ -4,9 +4,9 @@ import React, { useRef, useState, useEffect } from "react";
 import { Html } from '@react-three/drei';
 import { useFrame, useLoader } from "react-three-fiber";
 import { VideoTexture, TextureLoader,} from 'three';
+import { DoubleSide } from 'three';
 
-
-import Ruinas from "./Ruinas";
+import Ruinas from './Ruinas';
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
@@ -89,6 +89,12 @@ export default function RuinasExperience() {
         target={[0, 0, 0]}
         maxDistance={10}
       />
+      <Html style={{ textAlign: 'right' }}>
+        <img
+          src="/clickicon.png"
+          style={{ marginLeft: '300px', marginTop: '85px' }}
+        ></img>
+      </Html>
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />
       <ambientLight intensity={0.5} />
 

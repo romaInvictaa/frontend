@@ -6,6 +6,8 @@ import { Html } from '@react-three/drei';
 import { useFrame, useLoader } from "react-three-fiber";
 import { VideoTexture, DoubleSide, TextureLoader,} from 'three';
 import { FloorColiseo } from "./FloorColiseo";
+import { useTexture } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 
 const VideoPlayer = () => {
     const videoRef = useRef(null);
@@ -85,13 +87,18 @@ export default function Experience() {
   return (
     <>
       <OrbitControls
-       makeDefault 
-       enablePan={false}
-       maxPolarAngle={Math.PI / 2.1}
-       target={[0, 4, 0]}
-       maxDistance={30}
-        
+        makeDefault
+        enablePan={false}
+        maxPolarAngle={Math.PI / 2.1}
+        target={[0, 4, 0]}
+        maxDistance={30}
       />
+      <Html style={{ textAlign: 'right' }}>
+        <img
+          src="/clickicon.png"
+          style={{ marginLeft: '300px', marginTop: '85px' }}
+        ></img>
+      </Html>
       <spotLight castShadow position={[10, 25, 30]} intensity={1.5} />
       <ambientLight intensity={0.05} />
       <mesh position={[-1.5, 4, 1]}>
