@@ -89,12 +89,7 @@ export default function RuinasExperience() {
         target={[0, 0, 0]}
         maxDistance={10}
       />
-      <Html style={{ textAlign: 'right' }}>
-        <img
-          src="/clickicon.png"
-          style={{ marginLeft: '370px', marginTop: '170px' }}
-        ></img>
-      </Html>
+
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />
       <ambientLight intensity={0.5} />
 
