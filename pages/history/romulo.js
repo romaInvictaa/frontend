@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber';
 import Experience from '../../three/src/RomuloExperience';
 import { Header, InfoCard, ImageCarousel } from '@/components';
+import { useState } from 'react';
 
 const Romulo = () => {
   const cameraSettings = {
@@ -10,6 +11,14 @@ const Romulo = () => {
     far: 100,
     position: [-2, 15, 35],
   };
+
+  const [showInfo, setShowInfo] = useState(false);
+
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
+  };
+
+  const infoUrl = 'https://es.wikipedia.org/wiki/R%C3%B3mulo_y_Remo';
   
   return (
     <>
@@ -30,6 +39,27 @@ const Romulo = () => {
           <div className="col-span-6 md:col-span-2 sm:px-6">
             <InfoCard texts={text}/>
             <ImageCarousel images={images} />
+            <div className="flex justify-center mb-8">
+              {showInfo && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75">
+                  <div className="bg-white rounded-lg w-full h-full my-36 mb-12 p-2 mx-2 md:p-4  md:w-2/3 md:h-5/6 md:my-24">
+                    <button
+                      className="absolute top-2 right-2 text-3xl text-gray-500 hover:text-gray-700"
+                      onClick={toggleInfo}
+                    >
+                      X
+                    </button>
+                    <iframe className="w-full h-full" src={infoUrl}></iframe>
+                  </div>
+                </div>
+              )}
+              <button
+                className="bg-dark-slate-blue hover:bg-blue-700 text-cream-primary text-xl  font-bold py-2 px-6 rounded-full"
+                onClick={toggleInfo}
+              >
+                Más información
+              </button>
+            </div>
           </div>
       </div>
       </div>
