@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useVideoTexture, OrbitControls, useThree } from "@react-three/drei";
 import { Html } from '@react-three/drei';
 import { useFrame, useLoader } from "react-three-fiber";
-import { VideoTexture, DoubleSide } from 'three';
+import { VideoTexture, DoubleSide ,  TextureLoader} from 'three';
 import { Romulo } from './Romulo';
 import { FloorColiseo } from './FloorColiseo';
 
@@ -66,6 +66,8 @@ const VideoPlayer = () => {
   });
 
   const videoTexture1 = useVideoTexture('/video/romulo.mp4');
+  
+    
 
   return (
     <>
@@ -75,7 +77,9 @@ const VideoPlayer = () => {
       <mesh position={[0, 1, -5]}   onClick={playVideo} onDoubleClick={pauseVideo}>
         <boxGeometry args={[60, 30, 0.1]}   />
         <meshStandardMaterial map={videoTexture1} side={DoubleSide}  />
+        
       </mesh>
+
     </>
   );
 };
@@ -83,7 +87,8 @@ const VideoPlayer = () => {
 export default function RomuloExperience() {
   const notaRef = useRef();
   const [showNota, setShowNota] = useState(false);
-  
+  const [texture] = useLoader(TextureLoader, ["/sonido.png"]);
+ 
 
   const handleClick = () => {
     setShowNota(true);
@@ -106,8 +111,13 @@ export default function RomuloExperience() {
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />
       <ambientLight intensity={0.5} />
 
-      <mesh position={[-1.5, 0, 1]}>
-        <Romulo onClick={handleClick} onDoubleClick={handleClick1} position={[0, 2.1, 10]} scale={0.3} rotation={[-Math.PI / 7, -Math.PI / 10, 0]} />
+      <mesh position={[-1.5, 0, 1]} onBeforeRender ={handleClick} >
+
+      <mesh position={[25, 9, -14]}  rotation={[0, Math.PI / 2, 0]}  >
+        <boxGeometry args={[0, 4, 4]}   />
+        <meshStandardMaterial map={texture} transparent={true} />
+      </mesh>
+        <Romulo  position={[0, 2.1, 10]} scale={0.3} rotation={[-Math.PI / 7, -Math.PI / 10, 0]} />
         <FloorColiseo />
         {showNota && (
           <mesh ref={notaRef} position={[0, 20, -10]} >

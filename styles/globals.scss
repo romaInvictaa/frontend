@@ -42,6 +42,42 @@ body {
     }
   }
 }
+.arrow-up {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: white;
+}
+
+.arrow-down {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: white;
+}
+
+.arrow-left {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: white;
+}
+
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: white;
+}
+
 
 .react-multi-carousel-list {
   & .arrow-btn{

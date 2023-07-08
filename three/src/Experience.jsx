@@ -1,13 +1,86 @@
-import { OrbitControls, Text, Float } from "@react-three/drei";
-import { useTexture } from "@react-three/drei";
-import {useLoader} from "@react-three/fiber"
-import { TextureLoader, DoubleSide } from "three";
+import { OrbitControls, Text,  Audio  } from "@react-three/drei";
 import Video from "./Video";
 import { Coliseo } from "./Coliseo";
-import { Land } from "./Land";
+import React, { useRef, useState, useEffect } from "react";
+import { Html } from '@react-three/drei';
+import { useFrame, useLoader } from "react-three-fiber";
+import { VideoTexture, DoubleSide, TextureLoader,} from 'three';
 import { FloorColiseo } from "./FloorColiseo";
 
+const VideoPlayer = () => {
+    const videoRef = useRef(null);
+    const [videoTexture, setVideoTexture] = useState(null);
+    const [playing, setPlaying] = useState(false);
+  
+    const playVideo = () => {
+      videoRef.current.play();
+      setPlaying(true);
+    };
+  
+    const pauseVideo = () => {
+      videoRef.current.pause();
+      setPlaying(false);
+    };
+  
+    const rewindVideo = () => {
+      videoRef.current.currentTime = 0;
+    };
+  
+    const stopVideo = () => {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+      setPlaying(false);
+    };
+  
+    useEffect(() => {
+      const handleKeyDown = (event) => {
+        if (event.code === "KeyP") {
+          playVideo();
+        } else if (event.code === "Space") {
+          pauseVideo();
+        } else if (event.code === "KeyR") {
+          rewindVideo();
+        } else if (event.code === "KeyS") {
+          stopVideo();
+        }
+      };
+  
+      document.addEventListener("keydown", handleKeyDown);
+  
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    }, []);
+  
+    useEffect(() => {
+      if (videoRef.current) {
+        const texture = new VideoTexture(videoRef.current);
+        setVideoTexture(texture);
+      }
+    }, []);
+  
+    useFrame(() => {
+      if (playing && videoRef.current && videoTexture) {
+        videoTexture.needsUpdate = true;
+      }
+    });
+    const [texture] = useLoader(TextureLoader, ["/sonido.png"]);
+    return (
+      <>
+        <Html>
+            <video ref={videoRef} src="/music/roma.mp3" style={{ display: 'music' }} />
+        </Html>
+        <mesh position={[-5, 12, 17]}  rotation={[0, Math.PI / 2, 0]}  onClick={playVideo} onDoubleClick={pauseVideo}>
+          <boxGeometry args={[0, 1, 1]}   />
+          <meshStandardMaterial map={texture} transparent={true} />
+        </mesh>
+      </>
+    );
+  };
+  
+
 export default function Experience() {
+    
   
   return (
     <>
@@ -30,21 +103,9 @@ export default function Experience() {
           scale={0.002}
           rotation={[-Math.PI / 2, 0, 0]}
         />
-
-
-        {/*<Float speed={6}>
-        <Text
-            fontSize={2}
-            fontFamily="Trebuchet MS"
-            fontWeight={4}
-            color="white"
-            position-y={13}
-            maxWidth={18}
-            
-        >
-            COLISEO ROMANO
-        </Text>
-</Float> */}
+        
+        <VideoPlayer />
+       
       </mesh>
     </>
   );
