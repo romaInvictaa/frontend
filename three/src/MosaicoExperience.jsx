@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { OrbitControls, Text, Float } from "@react-three/drei";
 import Mosaico from "./Mosaico";
 
@@ -77,16 +76,6 @@ const VideoPlayer = () => {
     </>
   );
 };
-=======
-import { OrbitControls, Text, Float } from '@react-three/drei';
-import { useTexture } from '@react-three/drei';
-import { DoubleSide } from 'three';
-import Video from './Video';
-import { Html } from '@react-three/drei';
-import Mosaico from './Mosaico';
-
-const PATH = '/textures/coral/';
->>>>>>> 3733b4b43a9f6d392a3331a13ca542f47369ef97
 
 export default function MosaicoExperience() {
   return (
@@ -101,7 +90,7 @@ export default function MosaicoExperience() {
       <Html style={{ textAlign: 'right' }}>
         <img
           src="/clickicon.png"
-          style={{ marginLeft: '300px', marginTop: '85px' }}
+          style={{ marginLeft: '370px', marginTop: '150px'}}
         ></img>
       </Html>
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />

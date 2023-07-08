@@ -7,7 +7,6 @@ import { useFrame, useLoader } from "react-three-fiber";
 import { VideoTexture, DoubleSide, TextureLoader,} from 'three';
 import { FloorColiseo } from "./FloorColiseo";
 import { useTexture } from '@react-three/drei';
-import { Html } from '@react-three/drei';
 
 const VideoPlayer = () => {
     const videoRef = useRef(null);
@@ -96,7 +95,7 @@ export default function Experience() {
       <Html style={{ textAlign: 'right' }}>
         <img
           src="/clickicon.png"
-          style={{ marginLeft: '300px', marginTop: '85px' }}
+          style={{ marginLeft: '370px', marginTop: '130px' }}
         ></img>
       </Html>
       <spotLight castShadow position={[10, 25, 30]} intensity={1.5} />

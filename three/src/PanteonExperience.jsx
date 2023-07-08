@@ -20,7 +20,7 @@ export default function PanteonExperience() {
       <Html style={{ textAlign: 'right' }}>
         <img
           src="/clickicon.png"
-          style={{ marginLeft: '300px', marginTop: '85px' }}
+          style={{ marginLeft: '370px', marginTop: '120px'}}
         ></img>
       </Html>
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />
