@@ -39,7 +39,7 @@ const ImageCarousel = ({ images }) => {
   );
 
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
         {images.map((img, index) => (
           <img
