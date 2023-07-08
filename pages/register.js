@@ -78,7 +78,7 @@ const RegisterForm = () => {
     <div className="container">
       <div className="grid grid-cols-12 gap-12 bg-white w-fit min-[530px]:w-full sm:w-screen">
         <div className="col-span-12 lg:col-span-6 py-24 px-10 lg:px-20 lg:py-10 xl:px-28">
-          <h1 className="text-4xl font-semibold mb-8">Registrarse</h1>
+          <h1 className="text-4xl font-semibold mb-8 text-dark-slate-blue">Registrarse</h1>
           <form onSubmit={handleRegister} className="align-middle align-center">
             {/* NOMBRE */}
             <div>
@@ -124,7 +124,7 @@ const RegisterForm = () => {
                 className="mt-2 p-4 outline outline-gray-400 outline-1 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200 focus:bg-gray-100 bg-white text-gray-700 mb-8"
                 required
                 minLength={6}
-                type="password"
+                type={isPasswordVisible ? 'text' : 'password'}
                 id="register-password"
                 value={registerPassword}
                 onChange={handleRegisterPasswordChange}

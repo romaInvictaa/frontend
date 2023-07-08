@@ -120,7 +120,7 @@ export function AuthProvider({ children }) {
   // cerrar sesion
   const logout = async () => {
     const response = await signOut(auth);
-    window.location.reload();
+    //window.location.reload();
     //console.log(response);
   };
 
