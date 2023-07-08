@@ -4,6 +4,8 @@ import Experience from "../../three/src/PrimaPortaExperience";
 import { Header, InfoCard, ImageCarousel } from "@/components";
 
 const Primaporta = () => {
+
+  console.log(text)
   const cameraSettings = {
     fov: 80,
     aspect: 2,
@@ -42,11 +44,7 @@ const Primaporta = () => {
             </Canvas>
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
-            <InfoCard texts={text}/>
-            <ImageCarousel images={images} />
-          </div>
-          <div className="col-span-6 md:col-span-2 sm:px-6">
-            <InfoCard text={text} />
+            <InfoCard texts={text} />
             <ImageCarousel images={images} />
             <div className="flex justify-center mb-8">
               {showInfo && (
