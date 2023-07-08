@@ -69,12 +69,31 @@ const Header = ({ slug }) => {
                 {/* Back button */}
                 {/* {console.log(slug)} */}
                 {slug ? (
-                    <div className="hidden block md:contents">
-                        <Link href={`${slug}`}>
-                            <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-4 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
-                                Volver
-                            </span>
-                        </Link>
+                    <div>
+                        <div className="hidden block md:contents">
+                            <Link href={`${slug}`}>
+                                <span className="md:float-left  mt-2 align-middle text-dark-slate-blue ml-4 font-semibold cursor-pointer bg-cream-primary border border-cream-primary rounded-full px-4 py-2 transition duration-300 hover:bg-dark-slate-blue hover:text-light-gray hover:border-dark-slate-blue">
+                                    Volver
+                                </span>
+                            </Link>
+                        </div>
+                        <div className="md:hidden">
+                            <Link href={`${slug}`}>
+                                <div className="float-left text-dark-slate-blue cursor-pointer rounded-full p-2 mt-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-dark-slate-blue w-full col-span-3 md:col-span-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M15 18l-6-6 6-6" />
+                                    </svg>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className="float-left mt-1 align-middle text-black ml-8 font-semibold cursor-pointer flex content-center justify-center w-1/2 sm:w-2/3 md:w-fit">
+                            <Link href={'/'}>
+                                <img
+                                    src="/romaLogo.png"
+                                    width={55}
+                                />
+                            </Link>
+                        </div>
                     </div>
                 ) : (
                     <div></div>
@@ -91,7 +110,7 @@ const Header = ({ slug }) => {
                             </svg>
                         </div>
                     ) : (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" className="text-dark-slate-blue" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
                             <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -113,7 +132,7 @@ const Header = ({ slug }) => {
                                 currentTarget.src = "/profileIcon.png";
                             }}
                         />
-                        
+
 
                         {profileMenu ? (
                             <div className="md:float-right mt-2">
@@ -127,7 +146,7 @@ const Header = ({ slug }) => {
                             {user.displayName ? user.displayName : displayName}
                         </span>
 
-                    
+
 
                     </div>
                 ) : (
@@ -168,7 +187,7 @@ const Header = ({ slug }) => {
                                 </span>
                             </div>
                         </div>
-                        
+
                     </div>
                 ) : (
                     <div className="md:hidden bg-dark-slate-blue pb-4 mb-4">
