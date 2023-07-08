@@ -1,12 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import Experience from "../../three/src/Experience";
 import { Header, InfoCard, ImageCarousel } from "@/components";
-import {
-  IoMdArrowUp,
-  IoMdArrowDown,
-  IoMdArrowLeft,
-  IoMdArrowRight,
-} from "react-icons/io";
 
 const Coliseum = () => {
   const cameraSettings = {
