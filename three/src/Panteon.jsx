@@ -8,69 +8,303 @@ import { useGLTF } from "@react-three/drei";
 export function Panteon(props) {
   const { nodes, materials } = useGLTF("/models/panteon.glb");
   return (
-    <group {...props} dispose={null}>
-      <group position={[0, 8.09, 0]} rotation={[0, -0.07, 0]}>
+    <group {...props} 
+    scale={45}
+    >
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane012.geometry}
-          material={materials.Stone_Walls}
+          geometry={nodes.Mesh.geometry}
+          material={materials.lambert19}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane012_1.geometry}
-          material={materials.Plinths}
+          geometry={nodes.Mesh_1.geometry}
+          material={materials.nombre_del_panton}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane012_2.geometry}
-          material={materials.Doorway}
+          geometry={nodes.Mesh_2.geometry}
+          material={materials.frente_del_techo}
         />
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Plane012_3.geometry}
-          material={materials.Doorway_Surround}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012_4.geometry}
-          material={materials.Columns}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012_5.geometry}
-          material={materials.Scrolls}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012_6.geometry}
-          material={materials.Architrave}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012_7.geometry}
-          material={materials.Roof_Tiles}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012_8.geometry}
-          material={materials.Pediment}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Plane012_9.geometry}
-          material={materials.Base}
+          geometry={nodes.Mesh_3.geometry}
+          material={materials.superior_del_techo}
         />
       </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCylinder2.geometry}
+        material={materials.templo_exterior02}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube11.geometry}
+        material={materials.adelante_je}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <group position={[0.007, 1.398, 0]} scale={[1.194, 1.125, 1]}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.polySurface17.geometry}
+            material={materials.muros}
+          />
+        </group>
+      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pPlane1.geometry}
+        material={materials.terreno_ladrilado}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube24.geometry}
+        material={materials.pared_de_atras}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCylinder38.geometry}
+        material={materials.interior_del_templo}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube82.geometry}
+        material={materials.curve_columna}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <group
+        position={[0, 0.022, 0]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.polySurface175.geometry}
+          material={materials.soporte}
+        />
+      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface139.geometry}
+        material={materials.estatuas}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube133.geometry}
+        material={materials.escombros}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pPlane3.geometry}
+        material={materials.suelo_piso}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube147.geometry}
+        material={materials.arco_frontal}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube148.geometry}
+        material={materials.puerta_trasera}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube149.geometry}
+        material={materials.recuadros_de_la_entrada}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube153.geometry}
+        material={materials.el_cudro_importante}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface112.geometry}
+        material={materials.soporte}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface97.geometry}
+        material={materials.estatuas}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube160.geometry}
+        material={materials.madera}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface329.geometry}
+        material={materials.ventanas}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pCube170.geometry}
+        material={materials.escaleras}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <group
+        position={[0, 0.009, 0]}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      >
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.polySurface331.geometry}
+          material={materials.lambert1}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.polySurface335.geometry}
+          material={materials.posada_entrada}
+        />
+      </group>
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh025.geometry}
+          material={materials.la_posada_de_agua}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh025_1.geometry}
+          material={materials.agua_de_la_posada}
+        />
+      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface373.geometry}
+        material={materials.colunma_interior}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface339.geometry}
+        material={materials.curve_columna}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface379.geometry}
+        material={materials.columna_interior}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface380.geometry}
+        material={materials.colunma}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface383.geometry}
+        material={materials.colunma_fuerte}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh031.geometry}
+          material={materials.colunma_fuerte}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Mesh031_1.geometry}
+          material={materials.columna_pequeñas}
+        />
+      </group>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface3.geometry}
+        material={materials.adelante_je}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.polySurface198.geometry}
+        material={materials.prueba_con_lamber}
+        rotation={[Math.PI / 2, 0, 0]}
+        scale={0.01}
+      />
     </group>
   );
 }

@@ -28,7 +28,7 @@ const Mosaico = () => {
             </Canvas>
           </div>   
           <div className="col-span-6 md:col-span-2 sm:px-6">
-            <InfoCard text={text}/>
+            <InfoCard texts={text}/>
             <ImageCarousel images={images} />
           </div>
       </div>
@@ -39,5 +39,9 @@ const Mosaico = () => {
 
 export default Mosaico;
 
-const text = "El mosaico representa la batalla de Issos, en especial la carga de los hetairoi de Alejandro guiados por su líder mientras los soldados de Darío III Codomano intentan proteger a su rey. El mosaico tiene unas dimensiones de 2.72 por 5.13 metros."
+const text = ["El mosaico representa la batalla de Issos, en especial la carga de los hetairoi de Alejandro guiados por su líder mientras los soldados de Darío III Codomano intentan proteger a su rey. El mosaico tiene unas dimensiones de 2.72 por 5.13 metros.",
+"El mosaico de Issos fue encontrado en la ciudad de Tesalónica en Grecia",
+"El mosaico de Issos es una copia que se realizó durante el imperio romano de una pintura helenística. Esta obra fue realizada por el pintor Filoxeno de Eretria",
+"El mosaico está hecho de aproximadamente un millón y medio de diminutas teselas las cuales son pequeñas piezas de cerámica que se utilizan para confeccionar un mosaico"
+];
 const images = ["/mosaico/mosaico1.jpg", "/mosaico/mosaico5.jpg", "/mosaico/mosaico6.jpg", "/mosaico/mosaico4.jpg"];
