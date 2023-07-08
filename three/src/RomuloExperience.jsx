@@ -110,12 +110,7 @@ export default function RomuloExperience() {
         target={[0, 4, 0]}
         maxDistance={35}
       />
-      <Html style={{ textAlign: 'right' }}>
-        <img
-          src="/clickicon.png"
-          style={{ marginLeft: '370px', marginTop: '150px'}}
-        ></img>
-      </Html>
+
 
       <spotLight castShadow position={[10, 15, 30]} intensity={1.5} />
       <ambientLight intensity={0.5} />

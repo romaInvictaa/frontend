@@ -13,6 +13,11 @@ const Romulo = () => {
   };
 
   const [showInfo, setShowInfo] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
+
+  const toggleShowHelp = () => {
+    setShowHelp(!showHelp);
+  };
 
   const toggleInfo = () => {
     setShowInfo(!showInfo);
@@ -32,10 +37,36 @@ const Romulo = () => {
 
         <div className="grid grid-cols-6">
           <div className="col-span-6 md:col-span-4 border-8 border-dark-slate-blue rounded-3xl bg-blue-200 mb-8">
+            <div className="col-span-6">
+              <div className='md:mt-3 md:ml-4 absolute z-30' onClick={toggleShowHelp}>
+                <svg width="50" xmlns="http://www.w3.org/2000/svg" height="50" viewBox="0 0 96 96" fill="#181E4B">
+                  <path d="m48,9c-21.54,0-39,17.46-39,39s17.46,39 39,39 39-17.46 39-39-17.46-39-39-39zm6.117,53.349c-2.943,4.419-5.937,7.824-10.974,7.824-3.438-.561-4.851-3.024-4.107-5.535l6.48-21.462c.159-.525-.105-1.086-.585-1.257-.477-.168-1.413,.453-2.223,1.341l-3.918,4.713c-.105-.792-.012-2.1-.012-2.628 2.943-4.419 7.779-7.905 11.058-7.905 3.117,.318 4.593,2.811 4.05,5.55l-6.525,21.567c-.087,.486 .171,.981 .612,1.137 .48,.168 1.488-.453 2.301-1.341l3.915-4.71c.105,.792-.072,2.178-.072,2.706zm-.873-28.032c-2.478,0-4.488-1.806-4.488-4.464s2.01-4.461 4.488-4.461 4.488,1.806 4.488,4.461c0,2.661-2.01,4.464-4.488,4.464z" />
+                </svg>
+                {showHelp && (
+                  <div className="flex bg-cream-primary px-4 py-2 rounded-xl text-dark-slate-blue font-semibold text-md ml-4 w-80 md:w-96">
+                  <img 
+                  src="/clickicon.png" 
+                  className="hidden md:block" 
+                  alt="click"
+                  width={100}
+                  height={80}
+                  />
+                  <div className="ml-4 hidden md:contents">
+                    Puedes interactuar con el modelo 3D haciendo click sobre él y moviendolo con el mouse
+                  </div>
+                  <div className="md:hidden">
+                    Puedes interactuar con el modelo 3D mediante la pantalla de tu dispositivo
+                  </div>
+                </div>
+                )}
+              </div>
+            </div>
+            <div className="h-full">
             <Canvas camera={cameraSettings} shadows={true} className='rounded-2xl'>
               <Experience />
             </Canvas>
-          </div>   
+          </div>
+          </div>
           <div className="col-span-6 md:col-span-2 sm:px-6">
             <InfoCard texts={text}/>
             <ImageCarousel images={images} />

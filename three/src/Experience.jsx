@@ -92,12 +92,7 @@ export default function Experience() {
         target={[0, 4, 0]}
         maxDistance={30}
       />
-      <Html style={{ textAlign: 'right' }}>
-        <img
-          src="/clickicon.png"
-          style={{ marginLeft: '370px', marginTop: '130px' }}
-        ></img>
-      </Html>
+
       <spotLight castShadow position={[10, 25, 30]} intensity={1.5} />
       <ambientLight intensity={0.05} />
       <mesh position={[-1.5, 4, 1]}>
